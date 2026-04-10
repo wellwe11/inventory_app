@@ -35,7 +35,7 @@
  * Or find movies with "Sci-Fi"
  *
  *
- * User should also be able to click director so it filters by name
+ * User should also be able to click director, which takes user to direct page that has basic info and related movies
  * User should also search for item and it should look for movie-title
  */
 
@@ -47,3 +47,23 @@
  * Middle: Movie-posters
  * Left: Filter, this is a form. So: Genres to click. Years from-to, and if user clicks a director, it'll pop up as extra filter
  */
+
+import express from "express";
+import indexRoute from "./Routes/index.js";
+import unqiueItemRouter from "./Routes/uniqueItem.js";
+import directorRouter from "./Routes/director.js";
+
+import "dotenv/config";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.set("/", indexRoute);
+app.set("/uniqueItem", unqiueItemRouter);
+app.set("/director", directorRouter);
+
+app.listen(PORT, (err) => {
+  if (err) throw err;
+
+  console.log("Listening to port: ", PORT);
+});
