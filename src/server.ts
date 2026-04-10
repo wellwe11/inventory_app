@@ -49,21 +49,37 @@
  */
 
 import express from "express";
+
 import indexRoute from "./Routes/index.js";
 import unqiueItemRouter from "./Routes/uniqueItem.js";
 import directorRouter from "./Routes/director.js";
 
-import "dotenv/config";
+import dotenv from "dotenv";
+
+import { fileURLToPath } from "node:url";
+import path, { dirname } from "node:path";
+
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.set("/", indexRoute);
-app.set("/uniqueItem", unqiueItemRouter);
-app.set("/director", directorRouter);
+app.set("views", path.join(__dirname, "Views"));
+app.set("view engine", "ejs");
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/", indexRoute);
+app.use("/uniqueItem", unqiueItemRouter);
+app.use("/director", directorRouter);
 
 app.listen(PORT, (err) => {
-  if (err) throw err;
+  if (err) {
+    throw err;
+  }
 
-  console.log("Listening to port: ", PORT);
+  console.log("Listening to port:", PORT);
 });
