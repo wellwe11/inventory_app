@@ -51,7 +51,7 @@
 import express from "express";
 
 import indexRoute from "./Routes/index.js";
-import unqiueItemRouter from "./Routes/uniqueItem.js";
+import movieRouter from "./Routes/movie.js";
 import directorRouter from "./Routes/director.js";
 
 import dotenv from "dotenv";
@@ -75,7 +75,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", indexRoute);
 app.use("/director", directorRouter);
-app.use("/uniqueItem", unqiueItemRouter);
+app.use("/movie", movieRouter);
 
 app.listen(PORT, (err) => {
   if (err) {
