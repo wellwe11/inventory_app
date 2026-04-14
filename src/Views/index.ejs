@@ -22,36 +22,42 @@
     const yearMaxInput = document.getElementById("toSlider");
     const yearMinInput = document.getElementById("fromSlider");
 
-    const handleChangePos = (el, val) => {
-        el.style.left = `${+val}%`;
-        el.style.transform = `translate(-${val}%, 0)`
+    const minPos = {target: 0, current: 0};
+    const maxPos = {target: 0, current: 0};
+
+    const animate = () => {
+        minPos.current += (minPos.target - minPos.current) * 0.1;
+        yearMinText.style.left = `${minPos.current}%`;
+        yearMinText.style.transform = "translate(-50%)";
+
+        maxPos.current += (maxPos.target - maxPos.current) * 0.1;
+        yearMaxText.style.left = `${maxPos.current}%`;
+        yearMaxText.style.transform = "translate(-50%)";
+
+        requestAnimationFrame(animate)
     }
     
-    const handleValue = (el, value) => {
-        el.textContent = value;
-    };
-
+    animate();
+    
     yearMinInput.addEventListener("input", (e) => {
-        const value = e.target.value;
-        handleValue(yearMinText, value);
-        handleChangePos(yearMinText, value)
+        minPos.target = e.target.value;
+        yearMinText.textContent = e.target.value;
     });
 
     yearMaxInput.addEventListener("input", (e) => {
-        const value = e.target.value;
-        handleValue(yearMaxText, value);
-        handleChangePos(yearMaxText, value)
+        maxPos.target = e.target.value;
+        yearMaxText.textContent = e.target.value;
     });
 
     document.addEventListener("DOMContentLoaded", () => {
-        const minVal = yearMinInput.value;
-        const maxVal = yearMaxInput.value;
+        minPos.target = +yearMinInput.value;
+        minPos.current = minPos.target;
 
-        yearMinText.textContent = minVal;
-        yearMaxText.textContent = maxVal;
+        maxPos.target = +yearMaxInput.value;
+        maxPos.current = maxPos.target;
 
-        handleChangePos(yearMinText, minVal)
-        handleChangePos(yearMaxText, maxVal)
+        yearMinText.textContent = minPos.target;
+        yearMaxText.textContent = maxPos.target;
     });
   </script>
 </html>
