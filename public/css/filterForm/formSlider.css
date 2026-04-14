@@ -1,7 +1,11 @@
+.sliders_container {
+  position: relative;
+  width: 200px;
+}
+
 .sliders_control {
   position: relative;
-  min-height: 50px;
-  width: 200px;
+  width: 100%;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -67,4 +71,16 @@ input[type="range"] {
 #fromSlider {
   height: 0;
   z-index: 1;
+}
+
+.yearText {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  background-color: orange;
+  position: relative;
+}
+
+.yearTextP {
+  position: absolute;
 }

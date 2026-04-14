@@ -1,32 +1,45 @@
 <form action="/index" method="POST">
-  <div class="sliders_control">
-    <label for="year">Years range</label>
-    <input
-      type="range"
-      name="year"
-      id="fromSlider"
-      min="0"
-      max="100"
-      value="0"
-    />
 
-    <input
-      type="range"
-      name="year"
-      id="toSlider"
-      min="0"
-      max="100"
-      value="100"
-    />
-</div>
+    <div class="sliders_container">
+        <label for="year">Years range</label>
+        <div class="yearText">
+            <p class="yearMinText yearTextP"></p>
+            <p class="yearMaxText yearTextP"></p>
+        </div>
+        <div class="sliders_control">
+
+            <input
+            type="range"
+            name="year"
+            id="fromSlider"
+            min="0"
+            max="100"
+            value="0"
+            />
+            
+            <input
+            type="range"
+            name="year"
+            id="toSlider"
+            min="0"
+            max="100"
+            value="100"
+            />
+        </div>
+    </div>
 
 
- <div>
-    <% if (genres) { %> 
-        <% genres.forEach((genre, index) => { %>
-            <input type="checkbox" id="genre-<%= index %>" class="hidden-checkbox" />
-            <label for="genre-<%= index %>" class="custom-label" >  <%= genre %> </label>
-            <% }) %>
-        <% } %>
- </div>
+    <div>
+        <p>Genres</p>
+        <div class="genres-container">
+            <% if (genres) { %> 
+                <% genres.forEach((genre, index) => { %>
+                    <input type="checkbox" id="genre-<%= index %>" class="hidden-checkbox" />
+                    <label for="genre-<%= index %>" class="custom-label" >  <%= genre %> </label>
+                <% }) %>
+            <% } %>
+        </div>
+    </div>
+
+
 </form>

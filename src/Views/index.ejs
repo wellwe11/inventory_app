@@ -14,4 +14,43 @@
     <%- include("./partials/filterForm") %>
     <%- include("./partials/moviesWrapper", {data: "asdasd", genres}) %>
   </body>
+
+  <script defer>
+
+    const yearMinText = document.querySelector(".yearMinText");
+    const yearMinInput = document.getElementById("fromSlider");
+
+    const yearMaxText = document.querySelector(".yearMaxText");
+    const yearMaxInput = document.getElementById("toSlider");
+
+    
+    const handleChangePos = (el, val) => {
+        el.style.left = `${val}%`;
+        el.style.transform = `translate(-${val}%, 0)`
+    }
+
+    const handleValue = (el, value) => {
+        el.textContent = value;
+    };
+
+    yearMinInput.addEventListener("input", (e) => {
+        const value = e.target.value;
+        handleValue(yearMinText, value);
+        handleChangePos(yearMinText, value)
+    });
+    yearMaxInput.addEventListener("input", (e) => {
+        const value = e.target.value;
+        handleValue(yearMaxText, value);
+        handleChangePos(yearMaxText, value)
+    });
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const minVal = yearMinInput.value;
+        const maxVal = yearMaxInput.value;
+
+        yearMinText.textContent = minVal;
+        yearMaxText.textContent = maxVal;
+    });
+  </script>
 </html>

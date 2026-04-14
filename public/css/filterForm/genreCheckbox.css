@@ -1,11 +1,26 @@
+.genres-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px;
+
+  max-width: 205px;
+}
+
 .hidden-checkbox {
   display: none;
 }
 
 .custom-label {
-  padding: 10px;
   border: 1px solid #ccc;
   cursor: pointer;
+
+  padding: 5px 0px;
+  width: 95px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hidden-checkbox:checked + .custom-label {
