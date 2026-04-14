@@ -1,0 +1,14 @@
+.hidden-checkbox {
+  display: none;
+}
+
+.custom-label {
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.hidden-checkbox:checked + .custom-label {
+  background-color: #007bff;
+  color: white;
+}

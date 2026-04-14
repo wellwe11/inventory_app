@@ -18,5 +18,15 @@
       max="100"
       value="100"
     />
-  </div>
+</div>
+
+
+ <div>
+    <% if (genres) { %> 
+        <% genres.forEach((genre, index) => { %>
+            <input type="checkbox" id="genre-<%= index %>" class="hidden-checkbox" />
+            <label for="genre-<%= index %>" class="custom-label" >  <%= genre %> </label>
+            <% }) %>
+        <% } %>
+ </div>
 </form>
