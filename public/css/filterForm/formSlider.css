@@ -75,9 +75,9 @@ input[type="range"] {
 
 .yearText {
   width: 100%;
+  height: 25px;
 
   position: relative;
-  height: 25px;
 }
 
 .yearTextP {
@@ -86,7 +86,12 @@ input[type="range"] {
   top: 0;
   margin: 0;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   white-space: nowrap;
+  text-align: center;
 
   transition: transform 0.05s linear;
   will-change: transform;

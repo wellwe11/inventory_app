@@ -24,21 +24,22 @@
 
     const minPos = {target: 0, current: 0};
     const maxPos = {target: 0, current: 0};
+    const speed = 0.2;
 
     const animate = () => {
-        minPos.current += (minPos.target - minPos.current) * 0.1;
+        minPos.current += (minPos.target - minPos.current) * speed;
         yearMinText.style.left = `${minPos.current}%`;
-        yearMinText.style.transform = "translate(-50%)";
+        yearMinText.style.transform = `translate(-${minPos.current}%)`
 
-        maxPos.current += (maxPos.target - maxPos.current) * 0.1;
+        maxPos.current += (maxPos.target - maxPos.current) * speed;
         yearMaxText.style.left = `${maxPos.current}%`;
-        yearMaxText.style.transform = "translate(-50%)";
+        yearMaxText.style.transform = `translate(-${maxPos.current}%)`
 
         requestAnimationFrame(animate)
     }
     
     animate();
-    
+
     yearMinInput.addEventListener("input", (e) => {
         minPos.target = e.target.value;
         yearMinText.textContent = e.target.value;
