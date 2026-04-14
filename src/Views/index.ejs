@@ -16,19 +16,17 @@
   </body>
 
   <script defer>
-
     const yearMinText = document.querySelector(".yearMinText");
+    const yearMaxText = document.querySelector(".yearMaxText");
+
+    const yearMaxInput = document.getElementById("toSlider");
     const yearMinInput = document.getElementById("fromSlider");
 
-    const yearMaxText = document.querySelector(".yearMaxText");
-    const yearMaxInput = document.getElementById("toSlider");
-
-    
     const handleChangePos = (el, val) => {
         el.style.left = `${val}%`;
         el.style.transform = `translate(-${val}%, 0)`
     }
-
+    
     const handleValue = (el, value) => {
         el.textContent = value;
     };
@@ -38,6 +36,7 @@
         handleValue(yearMinText, value);
         handleChangePos(yearMinText, value)
     });
+    
     yearMaxInput.addEventListener("input", (e) => {
         const value = e.target.value;
         handleValue(yearMaxText, value);
@@ -51,6 +50,9 @@
 
         yearMinText.textContent = minVal;
         yearMaxText.textContent = maxVal;
+
+        handleChangePos(yearMinText, minVal)
+        handleChangePos(yearMaxText, maxVal)
     });
   </script>
 </html>
