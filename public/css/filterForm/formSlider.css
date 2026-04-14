@@ -11,8 +11,8 @@
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   pointer-events: all;
-  width: 24px;
-  height: 24px;
+  width: 15px;
+  height: 15px;
   background-color: #fff;
   border-radius: 50%;
   box-shadow: 0 0 0 1px #c6c6c6;
@@ -23,8 +23,8 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none;
   pointer-events: all;
-  width: 24px;
-  height: 24px;
+  width: 15px;
+  height: 15px;
   background-color: #fff;
   border-radius: 50%;
   box-shadow: 0 0 0 1px #c6c6c6;
@@ -74,13 +74,22 @@ input[type="range"] {
 }
 
 .yearText {
-  display: flex;
-  gap: 2px;
   width: 100%;
-  background-color: orange;
+
   position: relative;
+  height: 25px;
 }
 
 .yearTextP {
   position: absolute;
+  height: 100%;
+  width: 15px;
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+
+  top: 0;
+  margin: 0;
 }

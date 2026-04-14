@@ -23,7 +23,7 @@
     const yearMinInput = document.getElementById("fromSlider");
 
     const handleChangePos = (el, val) => {
-        el.style.left = `${val}%`;
+        el.style.left = `${+val}%`;
         el.style.transform = `translate(-${val}%, 0)`
     }
     
@@ -36,13 +36,12 @@
         handleValue(yearMinText, value);
         handleChangePos(yearMinText, value)
     });
-    
+
     yearMaxInput.addEventListener("input", (e) => {
         const value = e.target.value;
         handleValue(yearMaxText, value);
         handleChangePos(yearMaxText, value)
     });
-
 
     document.addEventListener("DOMContentLoaded", () => {
         const minVal = yearMinInput.value;
