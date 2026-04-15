@@ -29,11 +29,11 @@
     const animate = () => {
         minPos.current += (minPos.target - minPos.current) * speed;
         yearMinText.style.left = `${minPos.current}%`;
-        yearMinText.style.transform = `translate(-${minPos.current}%)`
+        yearMinText.style.transform = `translate(-${minPos.current * 12}%)`
 
         maxPos.current += (maxPos.target - maxPos.current) * speed;
         yearMaxText.style.left = `${maxPos.current}%`;
-        yearMaxText.style.transform = `translate(-${maxPos.current}%)`
+        yearMaxText.style.transform = `translate(-${maxPos.current * 12}%)`
 
         requestAnimationFrame(animate)
     }
