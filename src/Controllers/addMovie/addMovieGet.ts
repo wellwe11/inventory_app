@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import { genres } from "../../../public/css/resources/movieGenres.js";
 
 const addMovieGet = async (req: Request, res: Response) => {
-  res.render("/addMovie", {
+  res.render("addMovie", {
     genres,
   });
 };
