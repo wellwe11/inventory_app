@@ -58,6 +58,7 @@ import dotenv from "dotenv";
 
 import { fileURLToPath } from "node:url";
 import path, { dirname } from "node:path";
+import addMovieRouter from "./Routes/addMovie.js";
 
 dotenv.config();
 
@@ -76,6 +77,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", indexRoute);
 app.use("/director", directorRouter);
 app.use("/movie", movieRouter);
+app.use("/addMovie", addMovieRouter);
 
 app.listen(PORT, (err) => {
   if (err) {

@@ -1,10 +1,10 @@
 import type { Request, Response } from "express";
 import { genres } from "../../../public/css/resources/movieGenres.js";
 
-const listGet = async (req: Request, res: Response) => {
-  res.render("index", {
+const addMovieGet = async (req: Request, res: Response) => {
+  res.render("/addMovie", {
     genres,
   });
 };
 
-export default listGet;
+export default addMovieGet;
