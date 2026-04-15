@@ -6,15 +6,94 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/filterForm/formSlider.css">
     <link rel="stylesheet" href="/css/filterForm/genreCheckbox.css">
+    <link rel="stylesheet" href="/css/addMovieForm/dropZone.css">
     <title>Document</title>
   </head>
   <body>
     <h1>This is the index</h1>
 
+    <%- include("./partials/addMovieForm") %>
     <%- include("./partials/filterForm") %>
     <%- include("./partials/moviesWrapper", {data: "asdasd", genres}) %>
   </body>
 
+  <!-- vv Script for addMovieForm! vv -->
+  <script>
+    const dropZone = document.getElementById("drop-zone");
+    const preview = document.getElementById("preview");
+    const fileInput = document.getElementById("file-input");
+    const clearBtn = document.getElementById("clear-btn");
+
+    dropZone.addEventListener("drop", (e) => {
+      if ([...e.dataTransfer.item].some((item) => item.kind === "file")) {
+        e.preventDefault()
+      }
+    })
+
+    dropZone.addEventListener("dragover", (e) => {
+      const fileItems = [...e.dataTransfer.items].filter((item) => item.kind === "file");
+      if (fileItems.length > 0) {
+        e.preventDefault();
+        if (fileItems.some((item) => item.type.startsWith("image/"))) {
+          e.dataTransfer.dropEffect = "copy"
+        } else {
+          e.dataTransfer.dropEffect = "none"
+        }
+      }
+    })
+
+
+  window.addEventListener("dragover", (e) => {
+    const fileItems = [...e.dataTransfer.items].filter(
+      (item) => item.kind === "file",
+    );
+    if (fileItems.length > 0) {
+      e.preventDefault();
+      if (!dropZone.contains(e.target)) {
+        e.dataTransfer.dropEffect = "none";
+      }
+    }
+  });
+
+
+function displayImages(files) {
+  for (const file of files) {
+    if (file.type.startsWith("image/")) {
+      const li = document.createElement("li");
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(file);
+      img.alt = file.name;
+      li.appendChild(img);
+      li.appendChild(document.createTextNode(file.name));
+      preview.appendChild(li)
+    }
+  }
+}
+
+function dropHandler(ev) {
+  ev.preventDefault();
+  const files = [...ev.dataTransfer.items]
+  .map((item) => item.getAsFile())
+  .filter((file) => file);
+  displayImages(files)
+}
+
+fileInput.addEventListener("change", (e) => {
+  displayImages(e.target.file);
+})
+
+clearBtn.addEventListener("click", () => {
+  for (const img of preview.querySelectorAll("img")) {
+    URL.revokeObjectURL(img.src);
+  }
+  preview.textContent = "";
+})
+
+  </script>
+<!-- ^^ Script for addMovieForm! ^^ -->
+
+
+<!-- vv Script for filterForm! vv -->
   <script defer>
     const yearMinText = document.querySelector(".yearMinText");
     const yearMaxText = document.querySelector(".yearMaxText");
@@ -61,4 +140,6 @@
         yearMaxText.textContent = maxPos.target;
     });
   </script>
+  <!-- ^^ Script for filterForm! ^^ -->
+
 </html>
