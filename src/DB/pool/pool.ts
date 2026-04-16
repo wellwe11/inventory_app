@@ -1,5 +1,7 @@
 import { Pool } from "pg";
 
-export default new Pool({
+const pool = new Pool({
   connectionString: `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}:${process.env.PGPORT}/${process.env.PGDATABASE}`,
 });
+
+export default pool;
