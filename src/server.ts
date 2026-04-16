@@ -88,3 +88,8 @@ app.listen(PORT, (err) => {
 
   console.log("Listening to port:", PORT);
 });
+
+// Todo
+// Create a page for edit-movie without Data
+// Update index side-panel so has add-movie button etc.
+// Create an abstract <a> class which I apply to all <a>'s that make it look like a nice button
