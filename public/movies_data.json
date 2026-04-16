@@ -3,6 +3,7 @@
     "id": "1",
     "director_id": "1",
     "name": "psycho",
+    "src": "./movie_images/psycho.jpg",
     "year": "1960",
     "genres": ["comedy", "horror", "thriller"]
   },
@@ -10,6 +11,7 @@
     "id": "2",
     "director_id": "1",
     "name": "vertigo",
+    "src": "./movie_images/vertigo.jpg",
     "year": "1958",
     "genres": ["thriller", "romance"]
   },
@@ -17,6 +19,7 @@
     "id": "3",
     "director_id": "1",
     "name": "suspicion",
+    "src": "./movie_images/suspicion.jpg",
     "year": "1941",
     "genres": ["thriller", "drama"]
   },
@@ -25,6 +28,7 @@
     "id": "4",
     "director_id": "2",
     "name": "smultronstället",
+    "src": "./movie_images/smultronstället.jpg",
     "year": "1957",
     "genres": ["drama", "romance"]
   },
@@ -32,6 +36,7 @@
     "id": "5",
     "director_id": "2",
     "name": "fanny och alexander",
+    "src": "./movie_images/fanny_och_alexander.jpg",
     "year": "1982",
     "genres": ["drama"]
   },
@@ -39,6 +44,7 @@
     "id": "6",
     "director_id": "2",
     "name": "det sjunde inseglet",
+    "src": "./movie_images/det_sjunde_inseglet.jpg",
     "year": "1957",
     "genres": ["drama", "comedy"]
   },
@@ -46,6 +52,7 @@
     "id": "7",
     "director_id": "3",
     "name": "stalker",
+    "src": "./movie_images/stalker.jpg",
     "year": "1979",
     "genres": ["drama", "sci-fi"]
   },
@@ -53,6 +60,7 @@
     "id": "8",
     "director_id": "3",
     "name": "offret",
+    "src": "./movie_images/offret.jpg",
     "year": "1986",
     "genres": ["drama"]
   },
@@ -60,6 +68,7 @@
     "id": "9",
     "director_id": "3",
     "name": "nostalghia",
+    "src": "./movie_images/nostalghia.jpg",
     "year": "1983",
     "genres": ["drama"]
   },
@@ -67,6 +76,7 @@
     "id": "10",
     "director_id": "4",
     "name": "the shining",
+    "src": "./movie_images/the_shining.jpg",
     "year": "1980",
     "genres": ["drama", "horror"]
   },
@@ -74,6 +84,7 @@
     "id": "11",
     "director_id": "4",
     "name": "2001: a space oddyssey",
+    "src": "./movie_images/2001:_a_space_oddyssey.jpg",
     "year": "1968",
     "genres": ["adventure", "sci-fi"]
   },
@@ -81,6 +92,7 @@
     "id": "12",
     "director_id": "4",
     "name": "lolita",
+    "src": "./movie_images/lolita.jpg",
     "year": "1962",
     "genres": ["comedy", "drama"]
   },
@@ -88,6 +100,7 @@
     "id": "13",
     "director_id": "5",
     "name": "do lok tin si",
+    "src": "./movie_images/do_lok_tin_si.jpg",
     "year": "1995",
     "genres": ["comedy", "drama"]
   },
@@ -95,6 +108,7 @@
     "id": "13",
     "director_id": "5",
     "name": "2046",
+    "src": "./movie_images/2046.jpg",
     "year": "2004",
     "genres": ["sci-fi", "drama", "romance"]
   },
@@ -102,6 +116,7 @@
     "id": "14",
     "director_id": "5",
     "name": "chung hing sam lam",
+    "src": "./movie_images/chung_hing_sam_lam.jpg",
     "year": "1994",
     "genres": ["drama", "comedy", "crime"]
   },
@@ -109,13 +124,15 @@
     "id": "15",
     "director_id": "6",
     "name": "brazil",
+    "src": "./movie_images/brazil.jpg",
     "year": "1985",
     "genres": ["comedy", "sci-fi", "drama"]
   },
   {
     "id": "15",
     "director_id": "6",
-    "name": "monthy python and the holy grail",
+    "name": "monty python and the holy grail",
+    "src": "./movie_images/monty_python_and_the_holy_grail.jpg",
     "year": "1975",
     "genres": ["comedy", "adventure"]
   },
@@ -123,7 +140,52 @@
     "id": "16",
     "director_id": "6",
     "name": "the meaning of life",
+    "src": "./movie_images/the_meaning_of_life.jpg",
     "year": "1983",
     "genres": ["comedy"]
   }
+]
+
+
+[
+  {
+    "id": "1",
+    "name": "action"
+  },
+  {
+    "id": "2",
+    "name": "comedy"
+  },
+  {
+    "id": "3",
+    "name": "drama"
+  },
+  {
+    "id": "4",
+    "name": "horror"
+  },
+  {
+    "id": "5",
+    "name": "sci-fi"
+  },
+  {
+    "id": "6",
+    "name": "romance"
+  },
+  {
+    "id": "7",
+    "name": "thriller"
+  },
+  {
+    "id": "8",
+    "name": "fantasy"
+  },
+  {
+    "id": "9",
+    "name": "documentary"
+  },
+  {
+    "id": "10",
+    "name": "animation"
+  },
 ]
