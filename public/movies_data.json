@@ -1,0 +1,129 @@
+[
+  {
+    "id": "1",
+    "director_id": "1",
+    "name": "psycho",
+    "year": "1960",
+    "genres": ["comedy", "horror", "thriller"]
+  },
+  {
+    "id": "2",
+    "director_id": "1",
+    "name": "vertigo",
+    "year": "1958",
+    "genres": ["thriller", "romance"]
+  },
+  {
+    "id": "3",
+    "director_id": "1",
+    "name": "suspicion",
+    "year": "1941",
+    "genres": ["thriller", "drama"]
+  },
+
+  {
+    "id": "4",
+    "director_id": "2",
+    "name": "smultronstället",
+    "year": "1957",
+    "genres": ["drama", "romance"]
+  },
+  {
+    "id": "5",
+    "director_id": "2",
+    "name": "fanny och alexander",
+    "year": "1982",
+    "genres": ["drama"]
+  },
+  {
+    "id": "6",
+    "director_id": "2",
+    "name": "det sjunde inseglet",
+    "year": "1957",
+    "genres": ["drama", "comedy"]
+  },
+  {
+    "id": "7",
+    "director_id": "3",
+    "name": "stalker",
+    "year": "1979",
+    "genres": ["drama", "sci-fi"]
+  },
+  {
+    "id": "8",
+    "director_id": "3",
+    "name": "offret",
+    "year": "1986",
+    "genres": ["drama"]
+  },
+  {
+    "id": "9",
+    "director_id": "3",
+    "name": "nostalghia",
+    "year": "1983",
+    "genres": ["drama"]
+  },
+  {
+    "id": "10",
+    "director_id": "4",
+    "name": "the shining",
+    "year": "1980",
+    "genres": ["drama", "horror"]
+  },
+  {
+    "id": "11",
+    "director_id": "4",
+    "name": "2001: a space oddyssey",
+    "year": "1968",
+    "genres": ["adventure", "sci-fi"]
+  },
+  {
+    "id": "12",
+    "director_id": "4",
+    "name": "lolita",
+    "year": "1962",
+    "genres": ["comedy", "drama"]
+  },
+  {
+    "id": "13",
+    "director_id": "5",
+    "name": "do lok tin si",
+    "year": "1995",
+    "genres": ["comedy", "drama"]
+  },
+  {
+    "id": "13",
+    "director_id": "5",
+    "name": "2046",
+    "year": "2004",
+    "genres": ["sci-fi", "drama", "romance"]
+  },
+  {
+    "id": "14",
+    "director_id": "5",
+    "name": "chung hing sam lam",
+    "year": "1994",
+    "genres": ["drama", "comedy", "crime"]
+  },
+  {
+    "id": "15",
+    "director_id": "6",
+    "name": "brazil",
+    "year": "1985",
+    "genres": ["comedy", "sci-fi", "drama"]
+  },
+  {
+    "id": "15",
+    "director_id": "6",
+    "name": "monthy python and the holy grail",
+    "year": "1975",
+    "genres": ["comedy", "adventure"]
+  },
+  {
+    "id": "16",
+    "director_id": "6",
+    "name": "the meaning of life",
+    "year": "1983",
+    "genres": ["comedy"]
+  }
+]

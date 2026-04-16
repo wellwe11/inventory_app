@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "name": "alref hitchcock",
+    "born": "1899",
+    "deceased": "1980",
+    "country": "england"
+  },
+  {
+    "id": "2",
+    "name": "ingmar bergman",
+    "born": "1918",
+    "deceased": "2007",
+    "country": "sweden"
+  },
+  {
+    "id": "3",
+    "name": "andrei tarkovsky",
+    "born": "1932",
+    "deceased": "1986",
+    "country": "russia"
+  },
+  {
+    "id": "4",
+    "name": "stanley kubrick",
+    "born": "1928",
+    "deceased": "1999",
+    "country": "united states of america"
+  },
+  {
+    "id": "5",
+    "name": "wong kar-wai",
+    "born": "1958",
+    "deceased": "",
+    "country": "china"
+  },
+  {
+    "id": "6",
+    "name": "terry gilliam",
+    "born": "1940",
+    "deceased": "",
+    "country": "united states of america"
+  }
+]
