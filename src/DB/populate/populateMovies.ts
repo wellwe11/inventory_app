@@ -1,6 +1,7 @@
 import { Client } from "pg";
 import "dotenv/config";
 
+// Seed tables-query
 const SQL = `
 CREATE TABLE IF NOT EXISTS directors (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -69,6 +70,39 @@ INSERT INTO genres (name)
     ON CONFLICK (name) DO NOTHING;
 
 `;
+
+// Populate list of directors from the director-query. We can later retrieve the directors id to associate it to the movie
+const seedDirectors = async (directorList, client) => {
+  for (const director of directorList) {
+    const q = `
+                INSERT INTO directors (name, born, deceased, country)
+                VALUES ($1, $2, $3, $4)`;
+    await client.query(q, [
+      director.name,
+      director.born,
+      director.deceased,
+      director.country,
+    ]);
+  }
+};
+
+// Same goes here. We create a list for each genre, so we can later associate it to a specific movie
+const seedGenres = async (genreList, client) => {
+  for (const genre of genreList) {
+    const q = `
+        INSERT INTO genres (name)
+        VALUES ($1)`;
+    await client.query(q, [genre.name]);
+  }
+};
+
+// const seedMovies = async (movieList) => {
+//     for (const movie of movieList) {
+//         try {
+
+//         }
+//     }
+// }
 
 async function main() {
   console.log("seeing...");
