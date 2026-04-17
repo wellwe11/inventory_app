@@ -18,6 +18,21 @@
     <div>
       <a href="/addMovie">+</a>
     </div>
+
+
+
+    <div>
+      <% if (typeof movies !== "undefined" && movies !== null && movies) { %>
+        <% movies.forEach((movie) => { %>
+          <div>
+            <h1>
+              <%- movie.title %>
+            </h1>
+            <img src=<%= movie.src %> alt="">
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
   </body>
   
 <!-- vv Script for filterForm! vv -->
@@ -38,8 +53,6 @@
     const maxPos = {target: 100, current: 100};
     const speed = 0.2;
 
-    console.log(initialDifVal);
-    
     const animate = () => {
         minPos.current += (minPos.target - minPos.current) * speed;
         yearMinText.style.left = `${minPos.current}%`;

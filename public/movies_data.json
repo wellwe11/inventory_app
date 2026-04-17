@@ -2,126 +2,126 @@
   {
     "director_name": "alfred hitchcock",
     "name": "psycho",
-    "src": "./movie_images/psycho.jpg",
+    "src": "/movie_images/psycho.jpeg",
     "year": "1960",
     "genres": ["comedy", "horror", "thriller"]
   },
   {
     "director_name": "alfred hitchcock",
     "name": "vertigo",
-    "src": "./movie_images/vertigo.jpg",
+    "src": "/movie_images/vertigo.jpg",
     "year": "1958",
     "genres": ["thriller", "romance"]
   },
   {
     "director_name": "alfred hitchcock",
     "name": "suspicion",
-    "src": "./movie_images/suspicion.jpg",
+    "src": "/movie_images/suspicion.jpg",
     "year": "1941",
     "genres": ["thriller", "drama"]
   },
   {
     "director_name": "ingmar bergman",
     "name": "smultronstället",
-    "src": "./movie_images/smultronstället.jpg",
+    "src": "/movie_images/smultronstället.jpg",
     "year": "1957",
     "genres": ["drama", "romance"]
   },
   {
     "director_name": "ingmar bergman",
     "name": "fanny och alexander",
-    "src": "./movie_images/fanny_och_alexander.jpg",
+    "src": "/movie_images/fanny_och_alexander.jpg",
     "year": "1982",
     "genres": ["drama"]
   },
   {
     "director_name": "ingmar bergman",
     "name": "det sjunde inseglet",
-    "src": "./movie_images/det_sjunde_inseglet.jpg",
+    "src": "/movie_images/det_sjunde_inseglet.jpg",
     "year": "1957",
     "genres": ["drama", "comedy"]
   },
   {
     "director_name": "andrei tarkovsky",
     "name": "stalker",
-    "src": "./movie_images/stalker.jpg",
+    "src": "/movie_images/stalker.jpg",
     "year": "1979",
     "genres": ["drama", "sci-fi"]
   },
   {
     "director_name": "andrei tarkovsky",
     "name": "offret",
-    "src": "./movie_images/offret.jpg",
+    "src": "/movie_images/offret.jpg",
     "year": "1986",
     "genres": ["drama"]
   },
   {
     "director_name": "andrei tarkovsky",
     "name": "nostalghia",
-    "src": "./movie_images/nostalghia.jpg",
+    "src": "/movie_images/nostalghia.jpg",
     "year": "1983",
     "genres": ["drama"]
   },
   {
     "director_name": "stanley kubrick",
     "name": "the shining",
-    "src": "./movie_images/the_shining.jpg",
+    "src": "/movie_images/the_shining.jpg",
     "year": "1980",
     "genres": ["drama", "horror"]
   },
   {
     "director_name": "stanley kubrick",
     "name": "2001: a space odyssey",
-    "src": "./movie_images/2001:_a_space_oddyssey.jpg",
+    "src": "/movie_images/2001:_a_space_oddyssey.jpg",
     "year": "1968",
     "genres": ["adventure", "sci-fi"]
   },
   {
     "director_name": "stanley kubrick",
     "name": "lolita",
-    "src": "./movie_images/lolita.jpg",
+    "src": "/movie_images/lolita.jpg",
     "year": "1962",
     "genres": ["comedy", "drama"]
   },
   {
     "director_name": "wong kar-wai",
     "name": "do lok tin si",
-    "src": "./movie_images/do_lok_tin_si.jpg",
+    "src": "/movie_images/do_lok_tin_si.jpg",
     "year": "1995",
     "genres": ["comedy", "drama"]
   },
   {
     "director_name": "wong kar-wai",
     "name": "2046",
-    "src": "./movie_images/2046.jpg",
+    "src": "/movie_images/2046.jpg",
     "year": "2004",
     "genres": ["sci-fi", "drama", "romance"]
   },
   {
     "director_name": "wong kar-wai",
     "name": "chung hing sam lam",
-    "src": "./movie_images/chung_hing_sam_lam.jpg",
+    "src": "/movie_images/chung_hing_sam_lam.jpg",
     "year": "1994",
     "genres": ["drama", "comedy", "crime"]
   },
   {
     "director_name": "terry gilliam",
     "name": "brazil",
-    "src": "./movie_images/brazil.jpg",
+    "src": "/movie_images/brazil.jpg",
     "year": "1985",
     "genres": ["comedy", "sci-fi", "drama"]
   },
   {
     "director_name": "terry gilliam",
     "name": "monty python and the holy grail",
-    "src": "./movie_images/monty_python_and_the_holy_grail.jpg",
+    "src": "/movie_images/monty_python_and_the_holy_grail.jpg",
     "year": "1975",
     "genres": ["comedy", "adventure"]
   },
   {
     "director_name": "terry gilliam",
     "name": "the meaning of life",
-    "src": "./movie_images/the_meaning_of_life.jpg",
+    "src": "/movie_images/the_meaning_of_life.jpg",
     "year": "1983",
     "genres": ["comedy"]
   }
