@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/filterForm/formSlider.css">
     <link rel="stylesheet" href="/css/genreCheckbox.css">
     <link rel="stylesheet" href="/css/addMovie/dropZone.css">
+    <link rel="stylesheet" href="/css/index/movieWrapper.css">
     <title>Document</title>
   </head>
   <body>
@@ -21,14 +22,15 @@
 
 
 
-    <div>
+    <div class="movies_container">
       <% if (typeof movies !== "undefined" && movies !== null && movies) { %>
         <% movies.forEach((movie) => { %>
-          <div>
-            <h1>
+          <div class="movieWrapper">
+            <img class="movieImage" src=<%= movie.src %> alt="">
+            
+            <h5 class="movieTitle">
               <%- movie.title %>
-            </h1>
-            <img src=<%= movie.src %> alt="">
+            </h5>
           </div>
         <% }) %>
       <% } %>
