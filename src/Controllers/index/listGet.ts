@@ -8,8 +8,6 @@ const listGet = async (req: Request, res: Response) => {
   const movies = await getAllMovies();
   const genres = await getAllGenres();
 
-  console.log(movies);
-
   const genresArray = genres.map(({ name }) => name);
   const movieYears = movies.map(({ year }) => year).sort();
   const minMaxYears = {

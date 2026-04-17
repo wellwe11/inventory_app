@@ -1,7 +1,7 @@
 <% if (typeof genres !== "undefined" && genres !== null && genres.length > 1) { %> 
     <div class="genres-container">
         <% genres.forEach((genre, index) => { %>
-            <input type="checkbox" id="genre-<%= index %>" class="hidden-checkbox" name="genres" value="<%= genre %>" />
+            <input type="checkbox" id="genre-<%= index %>" class="hidden-checkbox" name="filtered_genres" value="<%= genre %>" />
             <label for="genre-<%= index %>" class="custom-label">  <%= genre %> </label>
         <% }) %>
     </div>

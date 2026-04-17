@@ -28,11 +28,17 @@
         data-max=<%= maxYear %>
       />
       
+
+      <!-- Original data which is stale data which I need when reloading page -->
+      <input type="hidden" value=<%= minYear %> name="minYear" />
+      <input type="hidden" value=<%= maxYear %> name="maxYear" />
+      <input type="hidden" value=<%= genres %> name="genres" />
+
       <input
       id="fromHidden"
       class="inputHidden"
       type="hidden"
-      name="year"
+      name="years"
       value=<%= minYear %>
       />
       
@@ -40,7 +46,7 @@
       id="toHidden"
       class="inputHidden"
       type="hidden"
-      name="year"
+      name="years"
       value=<%= maxYear %>
       />
     </div>
