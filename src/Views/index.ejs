@@ -27,7 +27,7 @@
         <% movies.forEach((movie) => { %>
           <div class="movieWrapper">
             <img class="movieImage" src=<%= movie.src %> alt="">
-            
+
             <h5 class="movieTitle">
               <%- movie.title %>
             </h5>
@@ -44,6 +44,12 @@
 
     const yearMinInput = document.getElementById("fromSlider");
     const yearMaxInput = document.getElementById("toSlider");
+
+    // Hidden elements which hold true value
+    const yearMinPostInput = document.getElementById("fromHidden");
+    const yearMaxPostInput = document.getElementById("toHidden");
+
+    console.log(yearMinPostInput.value, yearMaxPostInput.value)
 
     const minValue = +yearMinInput.dataset.min;
     const maxValue = +yearMaxInput.dataset.max;
@@ -73,12 +79,14 @@
       minPos.target = +e.target.value;
       const currYear = Math.round(minValue + (percentageVal * +e.target.value));
       yearMinText.textContent = currYear;
+      yearMinPostInput.value = +currYear;
     });
 
     yearMaxInput.addEventListener("input", (e) => {
         maxPos.target = +e.target.value;
         const currYear = Math.round(maxValue - ((100 - +e.target.value) * percentageVal));
         yearMaxText.textContent = currYear;
+        yearMaxPostInput.value = +currYear;
     });
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -93,6 +101,10 @@
 
         yearMinText.textContent = currMinYear;
         yearMaxText.textContent = currMaxYear;
+
+
+        yearMinPostInput.value = currMinYear;
+        yearMaxPostInput.value = currMaxYear;
     });
   </script>
   <!-- ^^ Script for filterForm! ^^ -->

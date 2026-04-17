@@ -10,7 +10,6 @@
     <div class="sliders_control">
       <input
         type="range"
-        name="year"
         id="fromSlider"
         min="0"
         max="100"
@@ -21,13 +20,28 @@
 
       <input
         type="range"
-        name="year"
         id="toSlider"
         min="0"
         max="100"
         value="100"
         data-min=<%= minYear %>
         data-max=<%= maxYear %>
+      />
+      
+      <input
+      id="fromHidden"
+      class="inputHidden"
+      type="hidden"
+      name="year"
+      value=<%= minYear %>
+      />
+      
+      <input
+      id="toHidden"
+      class="inputHidden"
+      type="hidden"
+      name="year"
+      value=<%= maxYear %>
       />
     </div>
   </div>

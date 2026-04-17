@@ -5,7 +5,7 @@
 
 const listPost = async (req, res) => {
   const selectedGenres = req.body.genres;
-  console.log(selectedGenres);
+  console.log(req.body);
 };
 
 export default listPost;
