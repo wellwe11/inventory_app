@@ -1,11 +1,15 @@
 import { Client } from "pg";
 import "dotenv/config";
 
+import moviesData from "../../../public/movies_data.json" with { type: "json" };
+import directorsData from "../../../public/directors_data.json" with { type: "json" };
+import genresData from "../../../public/genres_data.json" with { type: "json" };
+
 // Seed tables-query
 const SQL = `
 CREATE TABLE IF NOT EXISTS directors (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        name VARCHAR( 255 ) NOT NULL,
+        name VARCHAR( 255 ),
         born INTEGER,
         deceased INTEGER,
         country VARCHAR ( 400 )
@@ -22,7 +26,7 @@ CREATE TABLE IF NOT EXISTS movies (
 
 CREATE TABLE IF NOT EXISTS genres (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        name VARCHAR( 100 ) UNIQUE NOT NULL
+        name VARCHAR( 100 ) UNIQUE
     );
 
 CREATE TABLE IF NOT EXISTS movie_genres (
@@ -32,55 +36,17 @@ CREATE TABLE IF NOT EXISTS movie_genres (
     );
 `;
 
-// Initial data that will exist once data-base starts
-const init_PostSQL = `
-INSERT INTO directors (name, born, deceased, country)
-    VALUES 
-        ('alfred hitchcock', 1899, 1980, 'england'),
-        ('ingmar bergman', 1918, 2007, 'sweden'),
-        ('andrei tarkovsky', 1932, 1986, 'russia'),
-        ('stanley kubrick', 1928, 1999, 'united states of america'),
-        ('wong kar-wai', 1952, null, 'china'),
-        ('terry gilliam', 1940, null, 'united states of america');
-
-INSERT INTO movies (director_id, title, src, year)
-VALUES 
-    (1, 'psycho', './movie_images/psycho.jpg', 1960),
-    (1, 'vertigo', './movie_images/vertigo.jpg', 1958),
-    (1, 'suspicion', './movie_images/suspicion.jpg', 1941),
-    (2, 'smultronstället', './movie_images/smultronstället.jpg', 1957),
-    (2, 'fanny och alexander', './movie_images/fanny_och_alexander.jpg', 1982),
-    (2, 'det sjunde inseglet', './movie_images/det_sjunde_inseglet.jpg', 1957),
-    (3, 'stalker', './movie_images/stalker.jpg', 1979),
-    (3, 'offret', './movie_images/offret.jpg', 1986),
-    (3, 'nostalghia', './movie_images/nostalghia.jpg', 1983),
-    (4, 'the shining', './movie_images/the_shining.jpg', 1980),
-    (4, '2001: a space oddyssey', './movie_images/2001:_a_space_oddyssey.jpg', 1968),
-    (4, 'lolita', './movie_images/lolita.jpg', 1962),
-    (5, 'do lok tin si', './movie_images/do_lok_tin_si.jpg', 1995),
-    (5, '2046', './movie_images/2046.jpg', 2004),
-    (5, 'chung hing sam lam', './movie_images/chung_hing_sam_lam.jpg', 1994),
-    (6, 'brazil', './movie_images/brazil.jpg', 1985),
-    (6, 'monty python and the holy grail', './movie_images/monty_python_and_the_holy_grail.jpg', 1975),
-    (6, 'the meaning of life', './movie_images/the_meaning_of_life.jpg', 1983);
-
-
-INSERT INTO genres (name)
-    VALUES ('comedy'), ('horror'), ('thriller'), ('romance'), ('drama'), ('sci-fi'), ('adventure'), ('crime')
-    ON CONFLICK (name) DO NOTHING;
-
-`;
-
 // Populate list of directors from the director-query. We can later retrieve the directors id to associate it to the movie
 const seedDirectors = async (directorList, client) => {
+  console.log("Seeding directors");
   for (const director of directorList) {
     const q = `
                 INSERT INTO directors (name, born, deceased, country)
                 VALUES ($1, $2, $3, $4)`;
     await client.query(q, [
       director.name,
-      director.born,
-      director.deceased,
+      +director.born,
+      +director.deceased,
       director.country,
     ]);
   }
@@ -88,30 +54,77 @@ const seedDirectors = async (directorList, client) => {
 
 // Same goes here. We create a list for each genre, so we can later associate it to a specific movie
 const seedGenres = async (genreList, client) => {
+  console.log("Seeding genres");
   for (const genre of genreList) {
-    const q = `
+    try {
+      const q = `
         INSERT INTO genres (name)
         VALUES ($1)`;
-    await client.query(q, [genre.name]);
+      await client.query(q, [genre.name]);
+    } catch (err) {
+      console.error("Failed seeding genres:", err.message);
+    }
   }
 };
 
-// const seedMovies = async (movieList) => {
-//     for (const movie of movieList) {
-//         try {
+// Goes through directors, movies and genres. Does this so we can get a link between these three tables, with matching id's to easily retrieve the data
+const seedMovies = async (movieList, client) => {
+  console.log("Seeding movies");
+  for (const movie of movieList) {
+    try {
+      // Find specific director for movie
+      const directorRes = await client.query(
+        `SELECT id FROM directors WHERE name = $1`,
+        [movie.director_name],
+      );
 
-//         }
-//     }
-// }
+      if (directorRes.rows.length === 0) {
+        console.error(
+          `Skipping ${movie.name}: Director "${movie.director_name}"`,
+        );
+        continue;
+      }
+
+      // Retrieve id
+      const directorid = directorRes.rows[0].id;
+
+      // Seed movie-list with movie-info together with directorId
+      const movieRes = await client.query(
+        `INSERT INTO movies (director_id, title, src, year)
+        VALUES ($1, $2, $3, $4) RETURNING id`,
+        [directorid, movie.name, movie.src, +movie.year],
+      );
+
+      const movieId = movieRes.rows[0].id;
+
+      for (const genreName of movie.genres) {
+        await client.query(
+          `INSERT INTO movie_genres (movie_id, genre_id)
+            VALUES ($1, (SELECT id FROM genres WHERE name = $2))`,
+          [movieId, genreName],
+        );
+      }
+    } catch (err) {
+      console.error(`Error seeding ${movie.name}:`, err.message);
+    }
+  }
+};
 
 async function main() {
   console.log("seeing...");
   const client = new Client({
     connectionString: `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}:${process.env.PGPORT}/${process.env.PGDATABASE}`,
   });
+
   await client.connect();
+
   await client.query(SQL);
+  await seedDirectors(directorsData, client);
+  await seedGenres(genresData, client);
+  await seedMovies(moviesData, client);
+
   await client.end();
+
   console.log("done");
 }
 
