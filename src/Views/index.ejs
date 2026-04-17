@@ -12,7 +12,7 @@
   <body>
     <h1>This is the index</h1>
 
-    <%- include("./partials/filterForm", { genres }) %>
+    <%- include("./partials/filterForm", { genres, minYear, maxYear }) %>
     <%- include("./partials/moviesWrapper") %>
 
     <div>
@@ -25,13 +25,21 @@
     const yearMinText = document.querySelector(".yearMinText");
     const yearMaxText = document.querySelector(".yearMaxText");
 
-    const yearMaxInput = document.getElementById("toSlider");
     const yearMinInput = document.getElementById("fromSlider");
+    const yearMaxInput = document.getElementById("toSlider");
+
+    const minValue = +yearMinInput.dataset.min;
+    const maxValue = +yearMaxInput.dataset.max;
+
+    const initialDifVal = maxValue - minValue;
+    const percentageVal = initialDifVal / 100;
 
     const minPos = {target: 0, current: 0};
-    const maxPos = {target: 0, current: 0};
+    const maxPos = {target: 100, current: 100};
     const speed = 0.2;
 
+    console.log(initialDifVal);
+    
     const animate = () => {
         minPos.current += (minPos.target - minPos.current) * speed;
         yearMinText.style.left = `${minPos.current}%`;
@@ -47,13 +55,15 @@
     animate();
 
     yearMinInput.addEventListener("input", (e) => {
-        minPos.target = e.target.value;
-        yearMinText.textContent = e.target.value;
+      minPos.target = +e.target.value;
+      const currYear = Math.round(minValue + (percentageVal * +e.target.value));
+      yearMinText.textContent = currYear;
     });
 
     yearMaxInput.addEventListener("input", (e) => {
-        maxPos.target = e.target.value;
-        yearMaxText.textContent = e.target.value;
+        maxPos.target = +e.target.value;
+        const currYear = Math.round(maxValue - ((100 - +e.target.value) * percentageVal));
+        yearMaxText.textContent = currYear;
     });
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -63,8 +73,11 @@
         maxPos.target = +yearMaxInput.value;
         maxPos.current = maxPos.target;
 
-        yearMinText.textContent = minPos.target;
-        yearMaxText.textContent = maxPos.target;
+        const currMinYear = Math.round(minValue + (percentageVal * +minPos.current));
+        const currMaxYear = Math.round(maxValue - ((100 - +maxPos.current) * percentageVal));
+
+        yearMinText.textContent = currMinYear;
+        yearMaxText.textContent = currMaxYear;
     });
   </script>
   <!-- ^^ Script for filterForm! ^^ -->

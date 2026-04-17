@@ -9,11 +9,16 @@ const listGet = async (req: Request, res: Response) => {
   const genres = await getAllGenres();
 
   const genresArray = genres.map(({ name }) => name);
-
-  console.log(genresArray);
+  const movieYears = movies.map(({ year }) => year).sort();
+  const minMaxYears = {
+    minYear: +movieYears[0],
+    maxYear: +movieYears[movieYears.length - 1],
+  };
 
   res.render("index", {
     genres: genresArray,
+    minYear: minMaxYears.minYear,
+    maxYear: minMaxYears.maxYear,
   });
 };
 
