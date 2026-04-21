@@ -2,9 +2,6 @@
 
 import { getFilteredMovies } from "../../DB/Queries/getFilteredMovies.js";
 
-// createa a postfunction which gets info from query, and then uses SQL to get data
-// redirect back to "/" but with new data
-
 const listPost = async (req, res) => {
   const { filtered_genres, years, minYear, maxYear, genres } = req.body;
 
@@ -17,11 +14,18 @@ const listPost = async (req, res) => {
   // Fix filtered_genres so it queries for that as well
   // store years and add those as values to years-range so it keeps previous years when making new search
 
+  console.log(sortedYears);
+
   res.render("index", {
     movies: filteredMovies,
     minYear: +minYear,
     maxYear: +maxYear,
     genres: genresToArray,
+
+    // Additional new info, so that whenever page refreshes, it shows the previously filtered options
+    checkedGenres: filtered_genres,
+    filteredMinYear: sortedYears[0],
+    filteredMaxYear: sortedYears[1],
   });
 };
 

@@ -20,6 +20,10 @@ const listGet = async (req: Request, res: Response) => {
     minYear: minMaxYears.minYear,
     maxYear: minMaxYears.maxYear,
     movies,
+    checkedGenres: [],
+
+    filteredMinYear: null,
+    filteredMaxYear: null,
   });
 };
 
