@@ -1,8 +1,14 @@
 <% if (typeof genres !== "undefined" && genres !== null && genres.length > 1) { %> 
     <div class="genres-container">
-        <% genres.forEach((genre, index) => { %>
-            <input type="checkbox" id="genre-<%= index %>" class="hidden-checkbox" name="filtered_genres" value="<%= genre %>" <%= checkedGenres?.includes(genre) ? "checked" : "" %> />
-            <label for="genre-<%= index %>" class="custom-label">  <%= genre %> </label>
+        <% genres.forEach(({ id, name }, index) => { %>
+            <input 
+            type="checkbox" 
+            id="genre-<%= index %>" 
+            class="hidden-checkbox" 
+            name="filtered_genres" 
+            value="<%= JSON.stringify({ id, name }) %>" 
+            <%= typeof checkedGenres !== undefined && checkedGenres?.some((g) => g.name === name) ? "checked" : "" %> />
+            <label for="genre-<%= index %>" class="custom-label"> <%= name %> </label>
         <% }) %>
     </div>
 <% } %>

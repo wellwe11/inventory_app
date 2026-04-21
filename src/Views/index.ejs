@@ -59,6 +59,8 @@
     const maxPos = {target: 100, current: 100};
     const speed = 0.2;
 
+    
+
     const animate = () => {
         minPos.current += (minPos.target - minPos.current) * speed;
         yearMinText.style.left = `${minPos.current}%`;
@@ -71,10 +73,10 @@
         requestAnimationFrame(animate)
     }
     
-    animate();
 
     yearMinInput.addEventListener("input", (e) => {
       minPos.target = +e.target.value;
+      minValPrecentage = +e.target.value;
       const currYear = Math.round(minValue + (percentageVal * +e.target.value));
 
       yearMinText.textContent = currYear;
@@ -90,16 +92,13 @@
     });
 
     document.addEventListener("DOMContentLoaded", () => {
-      // Calculate the min & max year, so that we can fallback to those values on page-reload if needed
-      const currMinYear = Math.round(minValue + (percentageVal * +minPos.current));
-      const currMaxYear = Math.round(maxValue - ((100 - +maxPos.current) * percentageVal));
-
       // Check if form has been POSTed with new years, i.e. a new minYear or maxYear. We can then update the slider so it has those values on load. This looks cleaner if user clicks 'Search', and previous values are displayed.
-      const isMinYearDif = +currMinYear === +yearMinPostInput.value ? currMinYear : +yearMinPostInput.value;
-      const isMaxYearDif = +currMaxYear === +yearMaxPostInput.value ? currMaxYear : +yearMaxPostInput.value;
+      const isMinYearDif = minValue === +yearMinPostInput.value ? minValue : +yearMinPostInput.value;
+      const isMaxYearDif = maxValue === +yearMaxPostInput.value ? maxValue : +yearMaxPostInput.value;
+
       // Calculate the percentage of where 'thumbs' should be based on new POSTed values
-      const previousYearMinVal = Math.round((isMinYearDif - minValue) / initialDifVal * 100);
-      const previousYearMaxVal = Math.round(100 - 100 * (maxValue - isMaxYearDif) / initialDifVal);
+      const previousYearMinVal = ((isMinYearDif - minValue) / initialDifVal * 100);
+      const previousYearMaxVal = (100 - 100 * (maxValue - isMaxYearDif) / initialDifVal);
 
         minPos.target = previousYearMinVal;
         minPos.current = minPos.target;
@@ -115,6 +114,8 @@
 
         yearMinPostInput.value = isMinYearDif;
         yearMaxPostInput.value = isMaxYearDif;
+
+        animate();
     });
   </script>
   <!-- ^^ Script for filterForm! ^^ -->
