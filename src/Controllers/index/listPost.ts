@@ -9,10 +9,9 @@ const listPost = async (req, res) => {
   // Because user could technically drag highest val to lowest, and lowest to highest. We simply sort the items.
   // Years will always be an array of 2 integers. So we can simply use index 0 and 1.
   const sortedYears = [years[0], years[1]].sort();
-  const filteredGenres =
-    filtered_genres && [filtered_genres].length > 0
-      ? [filtered_genres].flat().map((item) => JSON.parse(item))
-      : null;
+  const filteredGenres = !filtered_genres
+    ? null
+    : [filtered_genres].flat().map((item) => JSON.parse(item));
 
   const filteredMovies = await getFilteredMovies(
     filteredGenres || JSON.parse(genres),
