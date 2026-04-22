@@ -4,7 +4,7 @@
   justify-content: space-between;
   gap: 5px;
 
-  max-width: 205px;
+  max-width: 300px;
 }
 
 .hidden-checkbox {
@@ -12,11 +12,11 @@
 }
 
 .custom-label {
-  border: 1px solid #ccc;
+  border: 1px solid var(--light-gray);
   cursor: pointer;
 
   padding: 5px 0px;
-  width: 95px;
+  width: calc(50% - 10px);
 
   display: flex;
   justify-content: center;
@@ -24,6 +24,6 @@
 }
 
 .hidden-checkbox:checked + .custom-label {
-  background-color: #007bff;
+  background-color: var(--minimal-gray);
   color: white;
 }

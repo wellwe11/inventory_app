@@ -1,0 +1,29 @@
+:root {
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --minimal-snap: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --minimal-gray: rgb(68, 68, 68);
+  --light-gray: rgb(228, 228, 228);
+  --white-gray: rgb(240, 240, 240);
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+}
+
+.minimal_link_style {
+  text-decoration: none;
+  color: var(--minimal-gray);
+}
+
+.minimal_text {
+  font-weight: 100;
+  color: var(--minimal-gray);
+  text-transform: capitalize;
+}
+
+.capitalize_text {
+  text-transform: uppercase !important;
+}

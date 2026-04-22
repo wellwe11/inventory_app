@@ -1,10 +1,9 @@
 <form action="/" method="POST">
   <div class="sliders_container">
-    <label for="year">Years range</label>
-
+    <label for="year" class=".minimal_text capitalize_text">Years range</label>
     <div class="yearText">
-      <p class="yearMinText yearTextP"></p>
-      <p class="yearMaxText yearTextP"></p>
+      <p class="yearMinText yearTextP minimal_text"></p>
+      <p class="yearMaxText yearTextP minimal_text"></p>
     </div>
 
     <div class="sliders_control">
@@ -56,7 +55,7 @@
   </div>
 
   <div>
-    <p>Genres</p>
+    <p class=".minimal_text capitalize_text">Genres</p>
     <%- include("./genres", { genres, checkedGenres }) %>
   </div>
 

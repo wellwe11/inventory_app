@@ -8,7 +8,7 @@
             name="filtered_genres" 
             value="<%= JSON.stringify({ id, name }) %>" 
             <%= typeof checkedGenres !== undefined && checkedGenres?.some((g) => g.name === name) ? "checked" : "" %> />
-            <label for="genre-<%= index %>" class="custom-label"> <%= name %> </label>
+            <label for="genre-<%= index %>" class="custom-label minimal_text capitalize_text"> <%= name %> </label>
         <% }) %>
     </div>
 <% } %>

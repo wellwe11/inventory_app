@@ -3,11 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/movie/movieWrapper.css">
     <title>Document</title>
   </head>
   <body>
-    <h1>this is movie page</h1>
 
-    <a href="/editMovie">Edit</a>
+    <div class="movieContainer">
+
+        <section class="left_panel">
+          <div class="textContent">
+
+            <p class="bio_text minimal_text"><%= title %> - <%= year %></p>
+            <p class="bio_text minimal_text">
+              <a class="director_link">
+                <%= director_name %>
+              </a>
+            </p>
+            
+            <div class="genreWrapper">
+              <% genre_list.forEach((genre) => { %>
+                <p class="genre bio_text minimal_text"><%= genre %></p>
+                <% }) %>
+              </div>
+            </div>
+              
+              <div class="a_container">
+                <a class="a_el minimal_link_style" href="/">HOME</a>
+                <a class="a_el minimal_link_style" href="/editMovie">EDIT</a>
+            </div>
+          </section>
+
+
+      <section class="movieWrapper">
+        <img class="movieImage" src=<%= src %> alt="">
+      </section>
+  
+    </div>
+
+    
   </body>
 </html>
