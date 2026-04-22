@@ -25,13 +25,13 @@
     <div class="movies_container">
       <% if (typeof movies !== "undefined" && movies !== null && movies) { %>
         <% movies.forEach((movie) => { %>
-          <div class="movieWrapper">
+          <a class="movieWrapper" href="/movie?id=<%= movie.id %>">
             <img class="movieImage" src=<%= movie.src %> alt="">
 
             <h5 class="movieTitle">
               <%- movie.title %>
             </h5>
-          </div>
+          </a>
         <% }) %>
       <% } %>
     </div>

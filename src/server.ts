@@ -79,7 +79,7 @@ app.use("/", indexRoute);
 app.use("/director", directorRouter);
 app.use("/movie", movieRouter);
 app.use("/addMovie", addMovieRouter);
-app.use("/editMovie", editMovieRouter);
+app.use("/editMovie:movie", editMovieRouter);
 
 app.listen(PORT, (err) => {
   if (err) {
@@ -90,4 +90,15 @@ app.listen(PORT, (err) => {
 });
 
 // todo
+// fix /movie
+// fix /edit movie
+// fix /director
+
+// fix /addMovie
+
 // Create an abstract <a> class which I apply to all <a>'s that make it look like a nice button
+
+// create logic for restricting users from deleting movies and allowing admin to delete movie
+
+// style
+// add data to cloud

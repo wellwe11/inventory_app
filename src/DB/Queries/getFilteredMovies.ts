@@ -14,7 +14,5 @@ export const getFilteredMovies = async (genres, years) => {
     [years[0], years[1], mappedGenres],
   );
 
-  console.log(filteredMovies);
-
   return filteredMovies.rows;
 };
