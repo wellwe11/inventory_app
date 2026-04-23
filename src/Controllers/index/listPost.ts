@@ -4,7 +4,6 @@ import { getFilteredMovies } from "../../DB/Queries/getFilteredMovies.js";
 
 const listPost = async (req, res) => {
   const { filtered_genres, years, minYear, maxYear, genres } = req.body;
-  console.log(filtered_genres);
 
   // Because user could technically drag highest val to lowest, and lowest to highest. We simply sort the items.
   // Years will always be an array of 2 integers. So we can simply use index 0 and 1.
