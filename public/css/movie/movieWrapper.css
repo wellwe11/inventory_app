@@ -22,31 +22,6 @@
   flex-direction: column;
 }
 
-.genreWrapper {
-  display: flex;
-  gap: 10px;
-}
-
-.genre {
-  background-color: var(--white-gray);
-  padding: 5px 10px;
-  border-radius: 25px;
-  box-shadow:
-    rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  border-bottom: 0px;
-
-  cursor: pointer;
-
-  transition: background-color 0.4s var(--ease-out-expo);
-
-  width: fit-content !important;
-}
-
-.genre:hover {
-  background-color: var(--light-gray);
-}
-
 .bio_text {
   border-bottom: 0.5px solid var(--white-gray);
 

@@ -8,6 +8,8 @@
               <%- movie.title %>
             </h5>
           </a>
+
+          <%- include("./movieGenres", { genre_list: movie.genre_list }) %>
         <% }) %>
       <% } %>
     </div>

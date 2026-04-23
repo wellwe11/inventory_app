@@ -4,7 +4,7 @@ const getDirectors = async (id) => {
   // get director based on ID here
   // Also find all related movies to director
 
-  const data = await pool.query(
+  const { rows } = await pool.query(
     `
     SELECT 
         directors.*,
@@ -31,7 +31,7 @@ const getDirectors = async (id) => {
     [id],
   );
 
-  return data.rows;
+  return rows;
 };
 
 export default getDirectors;
