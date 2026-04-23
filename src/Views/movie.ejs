@@ -9,7 +9,7 @@
     <title>Document</title>
   </head>
   <body>
-
+    <%- include("./partials/nav") %>
     <div class="movieContainer">
 
         <section class="left_panel">
@@ -25,7 +25,6 @@
             <%- include("./partials/movieGenres", { genre_list }) %>
               
               <div class="a_container">
-                <a class="a_el minimal_link_style" href="/">HOME</a>
                 <a class="a_el minimal_link_style" href="/editMovie">EDIT</a>
             </div>
           </section>

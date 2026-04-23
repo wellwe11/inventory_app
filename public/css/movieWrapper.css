@@ -1,7 +1,7 @@
 .movies_container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: var(--size-200);
 }
 
 .movieWrapper {

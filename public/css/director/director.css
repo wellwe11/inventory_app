@@ -1,0 +1,17 @@
+.directorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--size-300);
+}
+
+.directorBio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-200);
+}
+
+.years {
+  display: flex;
+  gap: var(--size-200);
+}

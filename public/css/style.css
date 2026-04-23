@@ -5,6 +5,21 @@
   --minimal-gray: rgb(68, 68, 68);
   --light-gray: rgb(228, 228, 228);
   --white-gray: rgb(240, 240, 240);
+
+  --size-50: 2px;
+  --size-100: 4px;
+  --size-200: 8px;
+  --size-300: 12px;
+  --size-400: 16px;
+
+  --size-500: 24px;
+  --size-600: 32px;
+
+  --size-700: 48px;
+  --size-800: 64px;
+
+  --size-900: 96px;
+  --size-1000: 128px;
 }
 
 * {
@@ -26,4 +41,20 @@
 
 .capitalize_text {
   text-transform: uppercase !important;
+}
+
+.a_container {
+  border-bottom: 0.5px solid var(--white-gray);
+  /* padding: 15px 5px; */
+
+  display: flex;
+}
+
+.a_el {
+  padding: var(--size-400) var(--size-500);
+}
+
+.a_el:hover {
+  transition: background-color 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  background-color: var(--light-gray);
 }

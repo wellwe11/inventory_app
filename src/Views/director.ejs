@@ -6,12 +6,31 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/movieWrapper.css">
     <link rel="stylesheet" href="/css/movieGenres.css">
+    <link rel="stylesheet" href="/css/director/director.css">
 
 
     <title>Document</title>
   </head>
   <body>
-    <h5><%= name %></h5>
-    <%- include("./partials/moviesList", { movies: movie_list }) %>
+    <%- include("./partials/nav") %>
+    <div class="directorContainer">
+
+      <div class="directorBio">
+        <h3 class="minimal_text"><%= name %></h3>
+
+        <div class="years">
+          <h4 class="minimal_text"> <%= born %> </h4>
+          <% if (deceased > 0) { %>
+            <h4 class="minimal_text"> 
+              <span>-</span>
+              <%= deceased %>
+            </h4> 
+            <% } %>
+          </div>
+
+          <h4 class="minimal_text"> <%= country %> </h4>
+      </div>
+      <%- include("./partials/moviesList", { movies: movie_list }) %>
+    </div>
   </body>
 </html>

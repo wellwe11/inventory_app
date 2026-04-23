@@ -1,7 +1,7 @@
 import pool from "../pool/pool.js";
 
 export const getMovie = async (id) => {
-  const movieObj = await pool.query(
+  const { rows } = await pool.query(
     `
     SELECT movies.*,
     directors.name AS director_name,
@@ -16,5 +16,5 @@ export const getMovie = async (id) => {
     [id],
   );
 
-  return movieObj.rows;
+  return rows;
 };

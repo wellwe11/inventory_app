@@ -3,7 +3,7 @@ import pool from "../pool/pool.js";
 export const getFilteredMovies = async (genres, years) => {
   const mappedGenres = genres.map((g) => g.id);
 
-  const filteredMovies = await pool.query(
+  const { rows } = await pool.query(
     `
     SELECT 
       m.*,
@@ -18,5 +18,5 @@ export const getFilteredMovies = async (genres, years) => {
     [years[0], years[1], mappedGenres],
   );
 
-  return filteredMovies.rows;
+  return rows;
 };

@@ -56,6 +56,8 @@ app.listen(PORT, (err) => {
 // create logic for restricting users from deleting movies and allowing admin to delete movie
 
 // -- GENERAL
+// Add reset-button to filter-form
+// Create a 'nav-bar' which has Home always
 // Add security that checks user-inputs (this includes editing info, queries from url etc.)
 // style website
 // add data to cloud

@@ -14,7 +14,7 @@
   </head>
   <body>
     <h1>This is the index</h1>
-
+    <%- include("./partials/nav") %>
     <%- include("./partials/filterForm", { genres, minYear, maxYear, checkedGenres, filteredMinYear, filteredMaxYear }) %>
     <!-- <%- include("./partials/moviesWrapper") %> -->
 
@@ -49,8 +49,6 @@
     const maxPos = {target: 100, current: 100};
     const speed = 0.2;
 
-    
-
     const animate = () => {
         minPos.current += (minPos.target - minPos.current) * speed;
         yearMinText.style.left = `${minPos.current}%`;
@@ -60,7 +58,7 @@
         yearMaxText.style.left = `${maxPos.current}%`;
         yearMaxText.style.transform = `translate(-${maxPos.current * 12}%)`
 
-        requestAnimationFrame(animate)
+        requestAnimationFrame(animate);
     }
     
 
