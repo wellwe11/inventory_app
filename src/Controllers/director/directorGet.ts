@@ -7,13 +7,13 @@ const directorGet = async (req: Request, res: Response) => {
 
   console.log(directorObj[0]);
 
-  const { name, born, deceased, coutnry, movie_list } = directorObj[0];
+  const { name, born, deceased, country, movie_list } = directorObj[0];
 
   res.render("director", {
     name,
     born,
     deceased,
-    coutnry,
+    country,
     movie_list,
   });
 };

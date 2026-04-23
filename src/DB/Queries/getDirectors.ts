@@ -15,7 +15,7 @@ const getDirectors = async (id) => {
                 'title', m.title,
                 'year', m.year,
                 'src', m.src,
-                'genres', (
+                'genre_list', (
                     SELECT json_agg(g.name)
                     FROM movie_genres mg
                     JOIN genres g ON mg.genre_id = g.id
