@@ -1,6 +1,3 @@
-// This function will return all information about a movie.
-// So I need genres, director & movie obj. ALl in one.
-
 import pool from "../pool/pool.js";
 
 export const getMovie = async (id) => {

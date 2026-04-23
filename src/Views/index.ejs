@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/movieWrapper.css">
+
     <link rel="stylesheet" href="/css/filterForm/formSlider.css">
     <link rel="stylesheet" href="/css/genreCheckbox.css">
     <link rel="stylesheet" href="/css/addMovie/dropZone.css">
-    <link rel="stylesheet" href="/css/index/movieWrapper.css">
     <title>Document</title>
   </head>
   <body>
@@ -22,19 +23,7 @@
 
 
 
-    <div class="movies_container">
-      <% if (typeof movies !== "undefined" && movies !== null && movies) { %>
-        <% movies.forEach((movie) => { %>
-          <a class="movieWrapper" href="/movie?id=<%= movie.id %>">
-            <img class="movieImage" src=<%= movie.src %> alt="">
-
-            <h5 class="movieTitle">
-              <%- movie.title %>
-            </h5>
-          </a>
-        <% }) %>
-      <% } %>
-    </div>
+    <%- include("./partials/moviesList", { movies }) %>
   </body>
   
 <!-- vv Script for filterForm! vv -->
