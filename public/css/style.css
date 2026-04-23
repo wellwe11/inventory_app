@@ -7,10 +7,10 @@
   --white-gray: rgb(240, 240, 240);
 }
 
-body,
-html {
+* {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 .minimal_link_style {

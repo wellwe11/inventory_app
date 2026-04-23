@@ -1,12 +1,17 @@
 .genreWrapper {
   display: flex;
-  gap: 10px;
-  height: fit-content;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
 }
 
 .genre {
-  background-color: var(--white-gray);
+  width: fit-content !important;
+  height: fit-content;
   padding: 5px 10px;
+
+  background-color: var(--white-gray);
+
   border-radius: 25px;
   box-shadow:
     rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
@@ -16,8 +21,6 @@
   cursor: pointer;
 
   transition: background-color 0.4s var(--ease-out-expo);
-
-  width: fit-content !important;
 }
 
 .genre:hover {
