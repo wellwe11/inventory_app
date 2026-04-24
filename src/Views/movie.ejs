@@ -35,7 +35,7 @@
 
         <div class="a_container">
           <a id="editBtn" class="a_el minimal_link_style">EDIT</a>
-          <button id="submitBtn" class="a_el minimal_link_style" type="submit">
+          <button id="submitBtn" class="a_el minimal_link_style" type="submit" <%= !editMode ? "disabled" : "" %>>
             SUBMIT
           </button>
       </form>
@@ -116,6 +116,8 @@
     const {
       isEdit
     } = getUrl();
+
+    submitBtn.toggleAttribute("disabled", !isEdit)
 
     editGroupChildren.forEach((el) => {
       if (el.tagName === "INPUT") {
