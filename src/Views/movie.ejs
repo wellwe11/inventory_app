@@ -1,41 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/movie/movieWrapper.css">
-    <link rel="stylesheet" href="/css/movieGenres.css">
-    <title>Document</title>
-  </head>
-  <body>
-    <%- include("./partials/nav") %>
-    <div class="movieContainer">
 
-        <section class="left_panel">
-          <div class="textContent">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/movie/movieWrapper.css">
+  <link rel="stylesheet" href="/css/movieGenres.css">
+  <title>Document</title>
+</head>
 
-            <p class="bio_text minimal_text"><%= title %> - <%= year %></p>
-            <p class="bio_text minimal_text">
-              <a class="director_link" href="/director?id=<%= director_id %>">
-                <%= director_name %>
-              </a>
-            </p>
+<body>
+  <%- include("./partials/nav") %>
+  <div class="movieContainer">
 
-            <%- include("./partials/movieGenres", { genre_list }) %>
-              
-              <div class="a_container">
-                <a class="a_el minimal_link_style" href="/editMovie">EDIT</a>
-            </div>
-          </section>
+    <section class="left_panel">
+      <form class="textContent" id="editModeForm" action="/movie?id=<% id %>" method="POST">
 
 
-      <section class="movieWrapper">
-        <img class="movieImage" src=<%= src %> alt="">
-      </section>
-  
-    </div>
 
-    
-  </body>
+        <% [title, year, director_name]?.forEach((i) => { %>
+        <% if (typeof i !== "undefined" && i) { %>
+
+        <div class="edit-group" id="edit-group">
+          <input name="<% i %>" class="editMovie bio_text minimal_text cleanInput <%= editMode ? '' : 'hidden' %>" value="<%= i %>" <%= editMode ? '' : 'disabled' %> />
+          <p class="editMovie bio_text minimal_text <%= editMode ? 'hidden' : '' %>">
+            <%= i %>
+          </p>
+        </div>
+        <% } %>
+        <% }) %>
+
+        <%- include("./partials/movieGenres", { genre_list }) %>
+
+        <div class="a_container">
+          <a id="editBtn" class="a_el minimal_link_style">EDIT</a>
+          <button id="submitBtn" class="a_el minimal_link_style" type="submit">
+            SUBMIT
+          </button>
+      </form>
+    </section>
+
+
+    <section class="movieWrapper">
+      <img class="movieImage" src=<%= src %> alt="">
+    </section>
+
+  </div>
+
+
+</body>
+
+<script>
+  const editButton = document.getElementById("editBtn");
+  const submitBtn = document.getElementById("submitBtn");
+  const inputs = document.querySelectorAll("#editModeForm > .editMovie");
+
+  const editGroupChildren = document.querySelectorAll("#editModeForm > .edit-group > .editMovie");
+
+  editButton.addEventListener("click", () => {
+    enterEditMode();
+    toggleEditElements();
+  });
+
+
+  const getUrl = () => {
+    const pathString = window.location.pathname;
+    const queryString = window.location.search;
+
+    const urlParams = new URLSearchParams(queryString);
+    const isEdit = urlParams.get("edit");
+    const id = urlParams.get("id");
+
+    return {
+      pathString,
+      queryString,
+      urlParams,
+      isEdit,
+      id
+    };
+  }
+
+
+
+  function enterEditMode() {
+    const {
+      pathString,
+      queryString,
+      urlParams,
+      isEdit,
+      id
+    } = getUrl();
+
+    // Disables edit-mode if user is already on edit-mode
+    if (isEdit) {
+      const prevUrl = pathString + `?id=${id}`;
+      window.history.pushState({
+        path: prevUrl
+      }, "", prevUrl);
+      return;
+    };
+
+    const newUrl = pathString + queryString + "&edit=true";
+    window.history.pushState({
+      path: newUrl
+    }, "", newUrl)
+
+    // Edit-elements become enabled. 
+    // So tag them, and allow user to edit.
+    // document.getElementById("")
+  }
+
+  // This function runs on-click, which means the boolean-values will be reversed
+  const toggleEditElements = () => {
+    const {
+      isEdit
+    } = getUrl();
+
+    editGroupChildren.forEach((el) => {
+      if (el.tagName === "INPUT") {
+        el.toggleAttribute("disabled", !isEdit);
+        el.classList.toggle("hidden", !isEdit);
+      }
+
+      if (el.tagName === "A" || el.tagName === "P") {
+        el.classList.toggle("hidden", isEdit);
+        el.classList.toggle("visible", !isEdit);
+      }
+    })
+
+
+    inputs.forEach((el) => {
+      el.toggleAttribute("disabled", !isEdit);
+      el.classList.toggle("editable", isEdit);
+    });
+
+
+  }
+</script>
+
 </html>

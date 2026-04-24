@@ -10,23 +10,23 @@
 
 
     <title>Document</title>
-  </head>
-  <body>
+    </head>
+    <body>
     <%- include("./partials/nav") %>
-    <div class="directorContainer">
+      <div class="directorContainer">
 
-      <div class="directorBio">
-        <h3 class="minimal_text"><%= name %></h3>
+        <div class="directorBio">
+          <h3 class="minimal_text"><%= name %></h3>
 
-        <div class="years">
-          <h4 class="minimal_text"> <%= born %> </h4>
-          <% if (deceased > 0) { %>
-            <h4 class="minimal_text"> 
-              <span>-</span>
-              <%= deceased %>
-            </h4> 
-            <% } %>
-          </div>
+         <div class="years">
+           <h4 class="minimal_text"> <%= born %> </h4>
+           <% if (deceased > 0) { %>
+             <h4 class="minimal_text"> 
+                <span>-</span>
+                <%= deceased %>
+               </h4> 
+              <% } %>
+            </div>
 
           <h4 class="minimal_text"> <%= country %> </h4>
       </div>

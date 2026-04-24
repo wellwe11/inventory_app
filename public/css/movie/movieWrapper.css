@@ -89,3 +89,11 @@
   transition: background-color 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   background-color: var(--light-gray);
 }
+
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  display: inline-block;
+}

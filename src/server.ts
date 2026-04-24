@@ -4,7 +4,6 @@ import indexRoute from "./Routes/index.js";
 import movieRouter from "./Routes/movie.js";
 import directorRouter from "./Routes/director.js";
 import addMovieRouter from "./Routes/addMovie.js";
-import editMovieRouter from "./Routes/editMovie.js";
 
 import dotenv from "dotenv";
 
@@ -29,7 +28,6 @@ app.use("/", indexRoute);
 app.use("/director", directorRouter);
 app.use("/movie", movieRouter);
 app.use("/addMovie", addMovieRouter);
-app.use("/editMovie:movie", editMovieRouter);
 
 app.listen(PORT, (err) => {
   if (err) {
@@ -42,7 +40,6 @@ app.listen(PORT, (err) => {
 // todo
 
 // -- GET
-// fix /director
 
 // -- POST
 // fix /edit movie
