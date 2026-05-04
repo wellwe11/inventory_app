@@ -15,17 +15,18 @@
   <div class="movieContainer">
 
     <section class="left_panel">
-      <form class="textContent" id="editModeForm" action="/movie?id=<% id %>" method="POST">
 
 
+      <form class="textContent" id="editModeForm" action="/movie" method="POST">
 
-        <% [title, year, director_name]?.forEach((i) => { %>
-        <% if (typeof i !== "undefined" && i) { %>
+        <% [{ title }, { year }, { director_name }]?.forEach((obj) => { %>
+        <% const [key, val] = Object.entries(obj)[0]; %>
+        <% if (val) { %>
 
         <div class="edit-group" id="edit-group">
-          <input name="<% i %>" class="editMovie bio_text minimal_text cleanInput <%= editMode ? '' : 'hidden' %>" value="<%= i %>" <%= editMode ? '' : 'disabled' %> />
+          <input name="<%= key %>" class="editMovie bio_text minimal_text cleanInput <%= editMode ? '' : 'hidden' %>" value="<%= val %>" <%= editMode ? '' : 'disabled' %> />
           <p class="editMovie bio_text minimal_text <%= editMode ? 'hidden' : '' %>">
-            <%= i %>
+            <%= val %>
           </p>
         </div>
         <% } %>
@@ -39,6 +40,8 @@
             SUBMIT
           </button>
       </form>
+
+
     </section>
 
 
@@ -104,11 +107,7 @@
     const newUrl = pathString + queryString + "&edit=true";
     window.history.pushState({
       path: newUrl
-    }, "", newUrl)
-
-    // Edit-elements become enabled. 
-    // So tag them, and allow user to edit.
-    // document.getElementById("")
+    }, "", newUrl);
   }
 
   // This function runs on-click, which means the boolean-values will be reversed
