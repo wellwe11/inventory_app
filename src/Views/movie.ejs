@@ -17,7 +17,7 @@
     <section class="left_panel">
 
 
-      <form class="textContent" id="editModeForm" action="/movie" method="POST">
+      <form class="textContent" id="editModeForm" action="/movie?id=<%= id %>" method="POST">
 
         <% [{ title }, { year }, { director_name }]?.forEach((obj) => { %>
         <% const [key, val] = Object.entries(obj)[0]; %>
