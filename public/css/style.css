@@ -63,19 +63,17 @@ body {
   -webkit-appearance: none;
   appearance: none;
 
-  /* FORCE INHERITANCE */
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
   color: inherit;
-  text-transform: inherit; /* Matches your .minimal_text capitalize */
+  text-transform: inherit;
 
-  /* THE ALIGNMENT KILLERS */
   display: inline-block;
   line-height: 1.2;
-  height: 1.2em; /* Forces the input box to be exactly as tall as the text */
-  vertical-align: top; /* Often better than baseline for mixing A and Input */
-  width: auto; /* Let it shrink to content if possible */
+  height: 1.2em;
+  vertical-align: top;
+  width: auto;
 }
 
 .capitalize_text {
