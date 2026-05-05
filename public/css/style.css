@@ -76,6 +76,12 @@ body {
   width: auto;
 }
 
+.cleanButton {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
 .capitalize_text {
   text-transform: uppercase !important;
 }

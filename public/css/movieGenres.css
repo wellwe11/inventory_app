@@ -5,7 +5,7 @@
   gap: var(--size-100);
 }
 
-.genre {
+.genreButton {
   width: fit-content !important;
   height: fit-content;
   padding: var(--size-100) var(--size-200);
@@ -23,6 +23,9 @@
   transition: background-color 0.4s var(--ease-out-expo);
 }
 
+.genre {
+}
+
 .canEdit:hover {
-  background-color: var(--light-gray);
+  background-color: var(--light-gray) !important;
 }
