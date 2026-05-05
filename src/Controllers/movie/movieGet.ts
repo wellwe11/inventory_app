@@ -12,6 +12,8 @@ const movieGet = async (req: Request, res: Response) => {
   const { id, title, src, year, director_name, director_id, genre_list } =
     movieObj[0];
 
+  console.log(allGenres);
+
   res.render("movie", {
     id,
     src,
@@ -22,7 +24,7 @@ const movieGet = async (req: Request, res: Response) => {
 
     director_id,
     genre_list,
-    allGenres: allGenres.map(({ name }) => name),
+    allGenres: allGenres.map(({ id, name }) => ({ id, name })),
     editMode,
   });
 };

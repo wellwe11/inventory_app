@@ -1,12 +1,77 @@
 <div class="genreWrapper">
-  <% genre_list.forEach((genre, index) => { %>
 
-  <label for="genre-<%= index %>" type="button" name="<%= genre %>" value="<%= genre %>" class="minimal_text cleanInput genre_label genre">
-    <%= genre %>
-  </label>
-  <input id="genre-<%= index %>" class="hiddenInput" name="filtered_genres" value="<%= genre %>" hidden>
+  <div class="genre_list_container">
+    <% genre_list.forEach((genre, index) => { %>
 
-  <% }) %>
+    <div>
+      <label for="genre-<%= index %>" type="button" name="<%= genre %>" value="<%= genre %>" class="minimal_text cleanInput genre_label genre">
+        <%= genre %>
+      </label>
+      <input id="genre-<%= index %>" class="hiddenInput" name="filtered_genres" value="<%= genre %>" hidden>
+    </div>
 
-  <p>+</p>
+    <% }) %>
+  </div>
+
+  <button class="toggleGenres">
+    <p>+</p>
+  </button>
+
+  <div class="allGenres">
+
+    <% allGenres.forEach(({ name, id }, i) => { %>
+    <button type="button" class="addGenreBtn" data-name="<%= name %>" data-id="<%= id %>">
+      <%= name %>
+    </button>
+    <% }) %>
+  </div>
+
+  <script>
+    {
+      const container = document.currentScript.parentElement;
+      const genre_list_container = container.querySelector(".genre_list_container");
+
+      const toggleBtn = container.querySelector(".toggleGenres");
+      const addGenreBtns = container.querySelectorAll(".addGenreBtn");
+
+      const addGenreToForm = (name, id) => {
+
+        const wrapper = document.createElement("div");
+
+        const label = document.createElement("label");
+        label.className = "minimal_text cleanInpujt genre_label genre";
+        label.textContent = name;
+
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "filtered_genres";
+        input.value = id;
+
+        label.onclick = () => wrapper.remove();
+
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        genre_list_container.appendChild(wrapper);
+      }
+
+
+      // Displays list of genres that user can add
+      toggleBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("Toggle genres")
+      })
+
+      addGenreBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const {
+            name,
+            id
+          } = btn.dataset;
+
+          addGenreToForm(name, id)
+        })
+      })
+    }
+  </script>
 </div>
