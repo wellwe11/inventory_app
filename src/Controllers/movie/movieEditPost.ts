@@ -38,7 +38,8 @@ const movieEditPost = [
     }
 
     const movieId = req.query.id;
-    const { title, year, director_name } = req.body;
+    const { title, year, director_name, filtered_genres } = req.body;
+    console.log(filtered_genres);
 
     console.log("Updating...");
     const rows = await updateMovie(movieId, title, year, director_name);

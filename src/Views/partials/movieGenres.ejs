@@ -1,7 +1,12 @@
 <div class="genreWrapper">
-  <% genre_list.forEach((genre) => { %>
-  <button class="cleanButton genreButton">
-    <p class="bio_text minimal_text genre"><%= genre %></p>
-  </button>
+  <% genre_list.forEach((genre, index) => { %>
+
+  <label for="genre-<%= index %>" type="button" name="<%= genre %>" value="<%= genre %>" class="minimal_text cleanInput genre_label genre">
+    <%= genre %>
+  </label>
+  <input id="genre-<%= index %>" class="hiddenInput" name="filtered_genres" value="<%= genre %>" hidden>
+
   <% }) %>
+
+  <p>+</p>
 </div>

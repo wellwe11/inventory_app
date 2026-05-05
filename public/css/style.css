@@ -39,6 +39,15 @@ body {
   box-sizing: border-box;
 }
 
+ul,
+ol {
+  list-style: none;
+}
+
+li {
+  list-style-type: none;
+}
+
 .minimal_link_style {
   text-decoration: none;
   color: var(--minimal-gray);

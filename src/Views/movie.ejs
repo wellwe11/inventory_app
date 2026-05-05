@@ -32,7 +32,7 @@
         <% } %>
         <% }) %>
 
-        <%- include("./partials/movieGenres", { genre_list }) %>
+        <%- include("./partials/movieGenres", { genre_list, allGenres }) %>
 
         <div class="a_container">
           <a id="editBtn" class="a_el minimal_link_style">EDIT</a>
@@ -58,7 +58,7 @@
   const editButton = document.getElementById("editBtn");
   const submitBtn = document.getElementById("submitBtn");
   const inputs = document.querySelectorAll("#editModeForm > .editMovie");
-  const genreButtons = document.querySelectorAll("#editModeForm > .genreWrapper > .genreButton");
+  const genreButtons = document.querySelectorAll("#editModeForm > .genreWrapper > .genre");
 
   const editGroupChildren = document.querySelectorAll("#editModeForm > .edit-group > .editMovie");
 
