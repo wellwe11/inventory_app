@@ -58,6 +58,7 @@
   const editButton = document.getElementById("editBtn");
   const submitBtn = document.getElementById("submitBtn");
   const inputs = document.querySelectorAll("#editModeForm > .editMovie");
+  const genreButtons = document.querySelectorAll("#editModeForm > .genreWrapper > .genre");
 
   const editGroupChildren = document.querySelectorAll("#editModeForm > .edit-group > .editMovie");
 
@@ -135,6 +136,11 @@
       el.toggleAttribute("disabled", !isEdit);
       el.classList.toggle("editable", isEdit);
     });
+
+    genreButtons.forEach((el) => {
+      el.toggleAttribute("disabled", !isEdit);
+      el.classList.toggle("canEdit", isEdit);
+    })
 
 
   }

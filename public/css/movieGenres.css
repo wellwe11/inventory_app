@@ -23,6 +23,6 @@
   transition: background-color 0.4s var(--ease-out-expo);
 }
 
-.genre:hover {
+.canEdit:hover {
   background-color: var(--light-gray);
 }
