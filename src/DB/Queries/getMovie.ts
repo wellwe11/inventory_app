@@ -5,7 +5,7 @@ export const getMovie = async (id) => {
     `
     SELECT movies.*,
     directors.name AS director_name,
-    json_agg(genres.name) AS genre_list
+    json_agg(genres) AS genre_list
     FROM movies
     JOIN movie_genres ON movies.id = movie_genres.movie_id
     JOIN genres ON movie_genres.genre_id = genres.id

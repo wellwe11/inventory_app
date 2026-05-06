@@ -1,111 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/movieWrapper.css">
-    <Link rel="stylesheet" href="/css/movieGenres.css">
 
-    <link rel="stylesheet" href="/css/filterForm/formSlider.css">
-    <link rel="stylesheet" href="/css/genreCheckbox.css">
-    <link rel="stylesheet" href="/css/addMovie/dropZone.css">
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>This is the index</h1>
-    <%- include("./partials/nav") %>
-    <%- include("./partials/filterForm", { genres, minYear, maxYear, checkedGenres, filteredMinYear, filteredMaxYear }) %>
-    <!-- <%- include("./partials/moviesWrapper") %> -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/movieWrapper.css">
+  <Link rel="stylesheet" href="/css/movieGenres.css">
 
-    <div>
-      <a href="/addMovie">+</a>
-    </div>
+  <link rel="stylesheet" href="/css/filterForm/formSlider.css">
+  <link rel="stylesheet" href="/css/genreCheckbox.css">
+  <link rel="stylesheet" href="/css/addMovie/dropZone.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>This is the index</h1>
+  <%- include("./partials/nav") %>
+  <%- include("./partials/filterForm", { genres, minYear, maxYear, checkedGenres, filteredMinYear, filteredMaxYear }) %>
+  <!-- <%- include("./partials/moviesWrapper") %> -->
+
+  <div>
+    <a href="/addMovie">+</a>
+  </div>
 
 
 
-    <%- include("./partials/moviesList", { movies }) %>
-  </body>
-  
+  <%- include("./partials/moviesList", { movies, genres }) %>
+</body>
+
 <!-- vv Script for filterForm! vv -->
-  <script defer>
-    const yearMinText = document.querySelector(".yearMinText");
-    const yearMaxText = document.querySelector(".yearMaxText");
+<script defer>
+  const yearMinText = document.querySelector(".yearMinText");
+  const yearMaxText = document.querySelector(".yearMaxText");
 
-    const yearMinInput = document.getElementById("fromSlider");
-    const yearMaxInput = document.getElementById("toSlider");
+  const yearMinInput = document.getElementById("fromSlider");
+  const yearMaxInput = document.getElementById("toSlider");
 
-    // Hidden elements which hold true value
-    const yearMinPostInput = document.getElementById("fromHidden");
-    const yearMaxPostInput = document.getElementById("toHidden");
+  // Hidden elements which hold true value
+  const yearMinPostInput = document.getElementById("fromHidden");
+  const yearMaxPostInput = document.getElementById("toHidden");
 
-    const minValue = +yearMinInput.dataset.min;
-    const maxValue = +yearMaxInput.dataset.max;
+  const minValue = +yearMinInput.dataset.min;
+  const maxValue = +yearMaxInput.dataset.max;
 
-    const initialDifVal = maxValue - minValue;
-    const percentageVal = initialDifVal / 100;
+  const initialDifVal = maxValue - minValue;
+  const percentageVal = initialDifVal / 100;
 
-    const minPos = {target: 0, current: 0};
-    const maxPos = {target: 100, current: 100};
-    const speed = 0.2;
+  const minPos = {
+    target: 0,
+    current: 0
+  };
+  const maxPos = {
+    target: 100,
+    current: 100
+  };
+  const speed = 0.2;
 
-    const animate = () => {
-        minPos.current += (minPos.target - minPos.current) * speed;
-        yearMinText.style.left = `${minPos.current}%`;
-        yearMinText.style.transform = `translate(-${minPos.current * 12}%)`
+  const animate = () => {
+    minPos.current += (minPos.target - minPos.current) * speed;
+    yearMinText.style.left = `${minPos.current}%`;
+    yearMinText.style.transform = `translate(-${minPos.current * 12}%)`
 
-        maxPos.current += (maxPos.target - maxPos.current) * speed;
-        yearMaxText.style.left = `${maxPos.current}%`;
-        yearMaxText.style.transform = `translate(-${maxPos.current * 12}%)`
+    maxPos.current += (maxPos.target - maxPos.current) * speed;
+    yearMaxText.style.left = `${maxPos.current}%`;
+    yearMaxText.style.transform = `translate(-${maxPos.current * 12}%)`
 
-        requestAnimationFrame(animate);
-    }
-    
+    requestAnimationFrame(animate);
+  }
 
-    yearMinInput.addEventListener("input", (e) => {
-      minPos.target = +e.target.value;
-      minValPrecentage = +e.target.value;
-      const currYear = Math.round(minValue + (percentageVal * +e.target.value));
 
-      yearMinText.textContent = currYear;
-      yearMinPostInput.value = +currYear;
-    });
+  yearMinInput.addEventListener("input", (e) => {
+    minPos.target = +e.target.value;
+    minValPrecentage = +e.target.value;
+    const currYear = Math.round(minValue + (percentageVal * +e.target.value));
 
-    yearMaxInput.addEventListener("input", (e) => {
-        maxPos.target = +e.target.value;
-        const currYear = Math.round(maxValue - ((100 - +e.target.value) * percentageVal));
+    yearMinText.textContent = currYear;
+    yearMinPostInput.value = +currYear;
+  });
 
-        yearMaxText.textContent = currYear;
-        yearMaxPostInput.value = +currYear;
-    });
+  yearMaxInput.addEventListener("input", (e) => {
+    maxPos.target = +e.target.value;
+    const currYear = Math.round(maxValue - ((100 - +e.target.value) * percentageVal));
 
-    document.addEventListener("DOMContentLoaded", () => {
-      // Check if form has been POSTed with new years, i.e. a new minYear or maxYear. We can then update the slider so it has those values on load. This looks cleaner if user clicks 'Search', and previous values are displayed.
-      const isMinYearDif = minValue === +yearMinPostInput.value ? minValue : +yearMinPostInput.value;
-      const isMaxYearDif = maxValue === +yearMaxPostInput.value ? maxValue : +yearMaxPostInput.value;
+    yearMaxText.textContent = currYear;
+    yearMaxPostInput.value = +currYear;
+  });
 
-      // Calculate the percentage of where 'thumbs' should be based on new POSTed values
-      const previousYearMinVal = ((isMinYearDif - minValue) / initialDifVal * 100);
-      const previousYearMaxVal = (100 - 100 * (maxValue - isMaxYearDif) / initialDifVal);
+  document.addEventListener("DOMContentLoaded", () => {
+    // Check if form has been POSTed with new years, i.e. a new minYear or maxYear. We can then update the slider so it has those values on load. This looks cleaner if user clicks 'Search', and previous values are displayed.
+    const isMinYearDif = minValue === +yearMinPostInput.value ? minValue : +yearMinPostInput.value;
+    const isMaxYearDif = maxValue === +yearMaxPostInput.value ? maxValue : +yearMaxPostInput.value;
 
-        minPos.target = previousYearMinVal;
-        minPos.current = minPos.target;
-        
-        maxPos.target = previousYearMaxVal;
-        maxPos.current = maxPos.target;
+    // Calculate the percentage of where 'thumbs' should be based on new POSTed values
+    const previousYearMinVal = ((isMinYearDif - minValue) / initialDifVal * 100);
+    const previousYearMaxVal = (100 - 100 * (maxValue - isMaxYearDif) / initialDifVal);
 
-        yearMinInput.value = previousYearMinVal;
-        yearMaxInput.value = previousYearMaxVal;
-        
-        yearMinText.textContent = isMinYearDif;
-        yearMaxText.textContent = isMaxYearDif;
+    minPos.target = previousYearMinVal;
+    minPos.current = minPos.target;
 
-        yearMinPostInput.value = isMinYearDif;
-        yearMaxPostInput.value = isMaxYearDif;
+    maxPos.target = previousYearMaxVal;
+    maxPos.current = maxPos.target;
 
-        animate();
-    });
-  </script>
-  <!-- ^^ Script for filterForm! ^^ -->
+    yearMinInput.value = previousYearMinVal;
+    yearMaxInput.value = previousYearMaxVal;
+
+    yearMinText.textContent = isMinYearDif;
+    yearMaxText.textContent = isMaxYearDif;
+
+    yearMinPostInput.value = isMinYearDif;
+    yearMaxPostInput.value = isMaxYearDif;
+
+    animate();
+  });
+</script>
+<!-- ^^ Script for filterForm! ^^ -->
 
 </html>

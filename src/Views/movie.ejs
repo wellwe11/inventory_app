@@ -32,9 +32,10 @@
         <% } %>
         <% }) %>
 
-        <%- include("./partials/movieGenres", { genre_list, allGenres }) %>
 
-        <div class="a_container">
+        <%- include("./partials/movieGenres", { genre_list, allGenres, editMode }) %>
+
+        <div class=" a_container">
           <a id="editBtn" class="a_el minimal_link_style">EDIT</a>
           <button id="submitBtn" class="a_el minimal_link_style" type="submit" <%= !editMode ? "disabled" : "" %>>
             SUBMIT
@@ -56,9 +57,12 @@
 
 <script>
   const editButton = document.getElementById("editBtn");
+  const toggleGenresContainer = document.querySelector("#toggleGenresContainer");
+
   const submitBtn = document.getElementById("submitBtn");
   const inputs = document.querySelectorAll("#editModeForm > .editMovie");
   const genreButtons = document.querySelectorAll("#editModeForm > .genreWrapper > .genre");
+  const expandGenresBtn = document.getElementById("expand_genres_btn");
 
   const editGroupChildren = document.querySelectorAll("#editModeForm > .edit-group > .editMovie");
 
@@ -143,6 +147,7 @@
     })
 
 
+    toggleGenresContainer.classList.toggle("hidden", !isEdit);
   }
 </script>
 
