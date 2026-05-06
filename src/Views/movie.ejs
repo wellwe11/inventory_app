@@ -57,7 +57,7 @@
 
 <script>
   const editButton = document.getElementById("editBtn");
-  const toggleGenresContainer = document.querySelector("#toggleGenresContainer");
+  const toggleGenresContainer = document.getElementById("toggleGenresContainer");
 
   const submitBtn = document.getElementById("submitBtn");
   const inputs = document.querySelectorAll("#editModeForm > .editMovie");
@@ -148,6 +148,7 @@
 
 
     toggleGenresContainer.classList.toggle("hidden", !isEdit);
+
   }
 </script>
 

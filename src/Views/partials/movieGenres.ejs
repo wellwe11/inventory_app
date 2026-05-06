@@ -14,8 +14,8 @@
 
 
   <% if (typeof editMode !== "undefined") { %>
-  <div class="toggleGenresContainer" id="toggleGenresContainer">
-    <button class="toggleGenres <%= !editMode ? 'hidden' : '' %>" id="expand_genres_btn">
+  <div class="<%= !editMode ? 'hidden' : '' %>" id="toggleGenresContainer">
+    <button class="toggleGenres" id="expand_genres_btn">
       <p>+</p>
     </button>
 
@@ -33,7 +33,7 @@
       const container = document.currentScript.parentElement;
       const toggleBtn = container.querySelector(".toggleGenres");
       const genre_list_container = container.querySelector(".genre_list_container");
-      const toggleGenresContainer = container.querySelector(".toggleGenresContainer");
+      const toggleGenresContainer = container.querySelector("#toggleGenresContainer");
 
       const addGenreBtns = container.querySelectorAll(".addGenreBtn");
 
@@ -71,7 +71,7 @@
         console.log("Toggle genres")
       });
 
-      toggleGenresContainer.addEventListener("click", (event) => {
+      toggleGenresContainer?.addEventListener("click", (event) => {
         const genreBtn = event.target.closest(".addGenreBtn");
 
         if (genreBtn) {

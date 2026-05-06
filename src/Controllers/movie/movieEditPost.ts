@@ -42,7 +42,13 @@ const movieEditPost = [
     console.log(filtered_genres);
 
     console.log("Updating...");
-    const rows = await updateMovie(movieId, title, year, director_name);
+    const rows = await updateMovie(
+      movieId,
+      title,
+      year,
+      director_name,
+      filtered_genres,
+    );
     console.log(rows);
 
     // 1 Find movie based on ID
