@@ -47,6 +47,8 @@
         }
 
         const wrapper = document.createElement("div");
+        // Used to identify new containers. If user now clicks edit again, it should return to previous values; we identify them by using this class
+        wrapper.className += "new_id";
 
         const label = document.createElement("label");
         label.className = "minimal_text cleanInput genre_label genre";
@@ -68,7 +70,7 @@
       // Displays list of genres that user can add
       toggleBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log("Toggle genres")
+        console.log("Toggle genres");
       });
 
       toggleGenresContainer?.addEventListener("click", (event) => {
