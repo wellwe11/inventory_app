@@ -58,7 +58,6 @@ li {
   color: var(--minimal-gray);
   font-size: var(--font-sm);
 
-  text-transform: capitalize;
   text-decoration: none;
 }
 
@@ -76,7 +75,6 @@ li {
   font-size: inherit;
   font-weight: inherit;
   color: inherit;
-  text-transform: inherit;
 
   display: inline-block;
   line-height: 1.2;

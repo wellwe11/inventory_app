@@ -19,14 +19,20 @@
 
         <% [{ title }, { year }, { director_name }]?.forEach((obj) => { %>
         <% const [key, val] = Object.entries(obj)[0]; %>
+
         <% if (val) { %>
+        <% const typeofVal = typeof val === "number" ? "number" : ""; %>
 
         <div class="edit-group" id="edit-group">
-          <input name="<%= key %>" class="editMovie bio_text minimal_text cleanInput <%= editMode ? '' : 'hidden' %>" value="<%= val %>" <%= editMode ? '' : 'disabled' %> />
-          <p class="editMovie bio_text minimal_text <%= editMode ? 'hidden' : '' %>">
+
+          <input type="<%= typeofVal %>" name="<%= key %>" class="editMovie minimal_text cleanInput<%= !editMode ? ' hidden' : '' %>" value="<%= val %>" <%= editMode ? '' : 'disabled' %> />
+
+          <p class="editMovie minimal_text <%= editMode ? 'hidden' : '' %>">
             <%= val %>
           </p>
+
         </div>
+
         <% } %>
         <% }) %>
 
@@ -56,11 +62,6 @@
 
   const container = document.querySelector(".movieContainer");
   const originalState = container.innerHTML;
-
-  // For tomorrow: 
-  // When user clicks edit. It now displays all of the genres.
-  // When user clicks edit again, I want to return to the old genres.
-  // Once that is done: I want the same for the inputs that are located inside of movieGenres.ejs
 
   document.addEventListener("click", (e) => {
     if (e.target && e.target.id === "editBtn") {
@@ -117,6 +118,7 @@
 
 
       container.innerHTML = originalState;
+      toggleEditElements();
       return;
     };
 
@@ -175,8 +177,6 @@
   const addGenreToForm = (name, id) => {
     const genre_list_container = container.querySelector(".genre_list_container");
     const doesExist = genre_list_container.querySelector(`input[value="${id}"]`);
-
-    console.log(genre_list_container)
 
     if (doesExist) {
       const parent = doesExist.parentElement;
