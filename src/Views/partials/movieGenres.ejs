@@ -32,59 +32,12 @@
     {
       const container = document.currentScript.parentElement;
       const toggleBtn = container.querySelector(".toggleGenres");
-      const genre_list_container = container.querySelector(".genre_list_container");
-      const toggleGenresContainer = container.querySelector("#toggleGenresContainer");
-
-      const addGenreBtns = container.querySelectorAll(".addGenreBtn");
-
-      const addGenreToForm = (name, id) => {
-        const doesExist = genre_list_container.querySelector(`input[value="${id}"]`);
-
-        if (doesExist) {
-          const parent = doesExist.parentElement;
-          parent.remove();
-          return;
-        }
-
-        const wrapper = document.createElement("div");
-        // Used to identify new containers. If user now clicks edit again, it should return to previous values; we identify them by using this class
-        wrapper.className += "new_id";
-
-        const label = document.createElement("label");
-        label.className = "minimal_text cleanInput genre_label genre";
-        label.textContent = name;
-        label.name = name;
-        label.for = "genre_" + id;
-
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = "filtered_genres";
-        input.value = id;
-        input.id = "genre_" + id;
-
-        wrapper.appendChild(label);
-        wrapper.appendChild(input);
-        genre_list_container.appendChild(wrapper);
-      }
 
       // Displays list of genres that user can add
       toggleBtn.addEventListener("click", (e) => {
         e.preventDefault();
         console.log("Toggle genres");
       });
-
-      toggleGenresContainer?.addEventListener("click", (event) => {
-        const genreBtn = event.target.closest(".addGenreBtn");
-
-        if (genreBtn) {
-          const {
-            name,
-            id
-          } = genreBtn.dataset;
-
-          addGenreToForm(name, id)
-        }
-      })
     }
   </script>
   <% } %>

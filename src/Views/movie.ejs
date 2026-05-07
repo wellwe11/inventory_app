@@ -15,8 +15,6 @@
   <div class="movieContainer">
 
     <section class="left_panel">
-
-
       <form class="textContent" id="editModeForm" action="/movie?id=<%= id %>" method="POST">
 
         <% [{ title }, { year }, { director_name }]?.forEach((obj) => { %>
@@ -35,14 +33,12 @@
 
         <%- include("./partials/movieGenres", { genre_list, allGenres, editMode }) %>
 
-        <div class=" a_container">
-          <a id="editBtn" class="a_el minimal_link_style">EDIT</a>
+        <div class="a_container">
+          <button type="button" id="editBtn" class="a_el minimal_link_style">EDIT</button>
           <button id="submitBtn" class="a_el minimal_link_style" type="submit" <%= !editMode ? "disabled" : "" %>>
             SUBMIT
           </button>
       </form>
-
-
     </section>
 
 
@@ -57,18 +53,29 @@
 
 <script>
   const editButton = document.getElementById("editBtn");
-  const toggleGenresContainer = document.getElementById("toggleGenresContainer");
 
-  const submitBtn = document.getElementById("submitBtn");
-  const inputs = document.querySelectorAll("#editModeForm > .editMovie");
-  const genreButtons = document.querySelectorAll("#editModeForm > .genreWrapper > .genre");
-  const expandGenresBtn = document.getElementById("expand_genres_btn");
+  const container = document.querySelector(".movieContainer");
+  const originalState = container.innerHTML;
 
-  const editGroupChildren = document.querySelectorAll("#editModeForm > .edit-group > .editMovie");
+  // For tomorrow: 
+  // When user clicks edit. It now displays all of the genres.
+  // When user clicks edit again, I want to return to the old genres.
+  // Once that is done: I want the same for the inputs that are located inside of movieGenres.ejs
 
-  editButton.addEventListener("click", () => {
-    enterEditMode();
-    toggleEditElements();
+  document.addEventListener("click", (e) => {
+    if (e.target && e.target.id === "editBtn") {
+      enterEditMode();
+      toggleEditElements();
+    }
+
+    if (e.target && e.target.classList.contains("addGenreBtn")) {
+      const {
+        name,
+        id
+      } = e.target.dataset;
+
+      addGenreToForm(name, id);
+    }
   });
 
 
@@ -100,12 +107,16 @@
       id
     } = getUrl();
 
+
     // Disables edit-mode if user is already on edit-mode
     if (isEdit) {
       const prevUrl = pathString + `?id=${id}`;
       window.history.pushState({
         path: prevUrl
       }, "", prevUrl);
+
+
+      container.innerHTML = originalState;
       return;
     };
 
@@ -121,7 +132,16 @@
       isEdit
     } = getUrl();
 
-    submitBtn.toggleAttribute("disabled", !isEdit)
+
+    const toggleGenresContainer = document.getElementById("toggleGenresContainer");
+    const submitBtn = document.getElementById("submitBtn");
+    const inputs = document.querySelectorAll("#editModeForm > .editMovie");
+    const genreButtons = document.querySelectorAll("#editModeForm > .genreWrapper > .genre");
+    const editGroupChildren = document.querySelectorAll("#editModeForm > .edit-group > .editMovie");
+
+
+    submitBtn.toggleAttribute("disabled", !isEdit);
+
 
     editGroupChildren.forEach((el) => {
       if (el.tagName === "INPUT") {
@@ -149,6 +169,40 @@
 
     toggleGenresContainer.classList.toggle("hidden", !isEdit);
 
+  }
+
+
+  const addGenreToForm = (name, id) => {
+    const genre_list_container = container.querySelector(".genre_list_container");
+    const doesExist = genre_list_container.querySelector(`input[value="${id}"]`);
+
+    console.log(genre_list_container)
+
+    if (doesExist) {
+      const parent = doesExist.parentElement;
+      parent.remove();
+      return;
+    }
+
+    const wrapper = document.createElement("div");
+    // Used to identify new containers. If user now clicks edit again, it should return to previous values; we identify them by using this class
+    wrapper.className += "new_id";
+
+    const label = document.createElement("label");
+    label.className = "minimal_text cleanInput genre_label genre";
+    label.textContent = name;
+    label.name = name;
+    label.for = "genre_" + id;
+
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "filtered_genres";
+    input.value = id;
+    input.id = "genre_" + id;
+
+    wrapper.appendChild(label);
+    wrapper.appendChild(input);
+    genre_list_container.appendChild(wrapper);
   }
 </script>
 
