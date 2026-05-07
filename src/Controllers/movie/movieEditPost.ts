@@ -1,5 +1,7 @@
 import { body, matchedData, validationResult } from "express-validator";
 import { updateMovie } from "../../DB/Queries/updateMovie.js";
+import { getMovie } from "../../DB/Queries/getMovie.js";
+import movieGet from "./movieGet.js";
 
 // for tomorrow: fix the POST form inside of movie.ejs.
 // It should link to id.
@@ -38,14 +40,15 @@ const movieEditPost = [
     }
 
     const movieId = req.query.id;
-    const { title, year, director_name, filtered_genres } = req.body;
+    const { title, year, director_name, filtered_genres, src } = req.body;
+    console.log(req.body);
 
     console.log("Updating...");
     const rows = await updateMovie(
       movieId,
       title,
       year,
-      director_name,
+      String(director_name).toLowerCase(),
       filtered_genres,
     );
 
@@ -53,6 +56,8 @@ const movieEditPost = [
     // 2 Update movies information with new information
     // 3 get new movie information
     // redirect to movieGet
+
+    await movieGet(req, res);
   },
 ];
 

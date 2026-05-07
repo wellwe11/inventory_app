@@ -17,14 +17,13 @@
     <section class="left_panel">
       <form class="textContent" id="editModeForm" action="/movie?id=<%= id %>" method="POST">
 
-        <% [{ title }, { year }, { director_name }]?.forEach((obj) => { %>
+        <% [{ title }, { year }]?.forEach((obj) => { %>
         <% const [key, val] = Object.entries(obj)[0]; %>
 
         <% if (val) { %>
         <% const typeofVal = typeof val === "number" ? "number" : ""; %>
 
         <div class="edit-group" id="edit-group">
-
           <input type="<%= typeofVal %>" name="<%= key %>" class="editMovie minimal_text cleanInput<%= !editMode ? ' hidden' : '' %>" value="<%= val %>" <%= editMode ? '' : 'disabled' %> />
 
           <p class="editMovie minimal_text <%= editMode ? 'hidden' : '' %>">
@@ -35,6 +34,13 @@
 
         <% } %>
         <% }) %>
+
+        <div class="edit-group" id="edit-group">
+          <input name="director_name" class="editMovie minimal_text cleanInput<%= !editMode ? ' hidden' : '' %>" value="<%= director_name %>" <%= editMode ? '' : 'disabled' %> />
+          <a href="/director?id=<%= director_id %>" class="editMovie minimal_text <%= editMode ? 'hidden' : '' %>">
+            <%= director_name %>
+          </a>
+        </div>
 
         <div class="genreWrapper">
           <%- include("./partials/movieGenres", { genre_list }) %>
@@ -192,7 +198,6 @@
 
   const addGenreToForm = (name, id) => {
     const genre_list_container = container.querySelector(".genre_list_container");
-    console.log(genre_list_container)
     const doesExist = genre_list_container.querySelector(`input[value="${id}"]`);
 
     if (doesExist) {
