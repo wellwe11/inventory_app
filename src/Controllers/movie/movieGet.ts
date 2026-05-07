@@ -9,6 +9,8 @@ const movieGet = async (req: Request, res: Response) => {
   const movieObj = await getMovie(movieId);
   const allGenres = await getAllGenres();
 
+  console.log(movieObj);
+
   const { id, title, src, year, director_name, director_id, genre_list } =
     movieObj[0];
 

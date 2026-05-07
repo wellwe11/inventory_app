@@ -14,8 +14,7 @@ const listGet = async (req: Request, res: Response) => {
     maxYear: +movieYears[movieYears.length - 1],
   };
 
-  console.log(movies[0].genre_list);
-
+  console.log(movies);
   res.render("index", {
     genres,
     minYear: minMaxYears.minYear,

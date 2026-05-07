@@ -187,12 +187,12 @@
 
 
     toggleGenresContainer.classList.toggle("hidden", !isEdit);
-
   }
 
 
   const addGenreToForm = (name, id) => {
     const genre_list_container = container.querySelector(".genre_list_container");
+    console.log(genre_list_container)
     const doesExist = genre_list_container.querySelector(`input[value="${id}"]`);
 
     if (doesExist) {

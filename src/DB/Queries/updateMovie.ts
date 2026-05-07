@@ -1,9 +1,9 @@
 import pool from "../pool/pool.js";
 import { getOrAltarDirectors } from "./getOrAltarDirectors.js";
+import { updateMovie_genres } from "./updateMovie_genres.js";
 
 export const updateMovie = async (id, title, year, director_name, genres) => {
   const directorRows = await getOrAltarDirectors(director_name);
-
   const { rows } = await pool.query(
     `
         UPDATE movies 
@@ -13,6 +13,8 @@ export const updateMovie = async (id, title, year, director_name, genres) => {
         `,
     [title, year, directorRows[0].id, id],
   );
+
+  await updateMovie_genres(id, genres);
 
   return rows;
 };
