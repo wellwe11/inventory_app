@@ -1,44 +1,12 @@
-<div class="genreWrapper">
-  <div class="genre_list_container">
-    <% genre_list.forEach(({ id, name }, index) => { %>
+<div class="genre_list_container">
+  <% genre_list.forEach(({ id, name }, index) => { %>
 
-    <div>
-      <label for="genre_<%= id %>" type="button" name="<%= id %>" value="<%= name %>" class="minimal_text cleanInput genre_label genre">
-        <%= name %>
-      </label>
-      <input id="genre_<%= id %>" class="hiddenInput" name="filtered_genres" value="<%= id %>" hidden>
-    </div>
-
-    <% }) %>
+  <div>
+    <label for="genre_<%= id %>" type="button" name="<%= id %>" value="<%= name %>" class="minimal_text cleanInput genre_label genre">
+      <%= name %>
+    </label>
+    <input id="genre_<%= id %>" class="hiddenInput" name="filtered_genres" value="<%= id %>" hidden>
   </div>
 
-
-  <% if (typeof editMode !== "undefined") { %>
-  <div class="<%= !editMode ? 'hidden' : '' %>" id="toggleGenresContainer">
-    <button class="toggleGenres" id="expand_genres_btn">
-      <p>+</p>
-    </button>
-
-    <div class="allGenres">
-      <% allGenres.forEach(({ name, id }, i) => { %>
-      <button type="button" class="addGenreBtn" data-name="<%= name %>" data-id="<%= id %>">
-        <%= name %>
-      </button>
-      <% }) %>
-    </div>
-  </div>
-
-  <script>
-    {
-      const container = document.currentScript.parentElement;
-      const toggleBtn = container.querySelector(".toggleGenres");
-
-      // Displays list of genres that user can add
-      toggleBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        console.log("Toggle genres");
-      });
-    }
-  </script>
-  <% } %>
+  <% }) %>
 </div>

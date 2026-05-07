@@ -36,8 +36,25 @@
         <% } %>
         <% }) %>
 
+        <div class="genreWrapper">
+          <%- include("./partials/movieGenres", { genre_list }) %>
 
-        <%- include("./partials/movieGenres", { genre_list, allGenres, editMode }) %>
+          <% if (typeof editMode !== "undefined") { %>
+          <div class="<%= !editMode ? 'hidden' : '' %>" id="toggleGenresContainer">
+            <button class="toggleGenres" id="expand_genres_btn">
+              <p>+</p>
+            </button>
+
+            <div class="allGenres">
+              <% allGenres.forEach(({ name, id }, i) => { %>
+              <button type="button" class="addGenreBtn" data-name="<%= name %>" data-id="<%= id %>">
+                <%= name %>
+              </button>
+              <% }) %>
+            </div>
+          </div>
+          <% } %>
+        </div>
 
         <div class="a_container">
           <button type="button" id="editBtn" class="a_el minimal_link_style">EDIT</button>

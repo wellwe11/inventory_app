@@ -10,7 +10,7 @@
       <h5 class="movieTitle">
         <%- movie.title %>
       </h5>
-      <%- include("./movieGenres", { genre_list: movie.genre_list, allGenres: genres }) %>
+      <%- include("./movieGenres", { genre_list: movie.genre_list }) %>
     </div>
   </div>
   <% }) %>
