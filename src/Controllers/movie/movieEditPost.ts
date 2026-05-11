@@ -1,12 +1,8 @@
-import { body, matchedData, validationResult } from "express-validator";
+import { body, validationResult } from "express-validator";
 import { updateMovie } from "../../DB/Queries/updateMovie.js";
-import { getMovie } from "../../DB/Queries/getMovie.js";
 import movieGet from "./movieGet.js";
-
-// for tomorrow: fix the POST form inside of movie.ejs.
-// It should link to id.
-// Also fix all inputs etc.
-// Submit and inputs should only be enabled if user has clicked edit.
+import { updateMovie_genres } from "../../DB/Queries/updateMovie_genres.js";
+import { getOrAltarDirectors } from "../../DB/Queries/getOrAltarDirectors.js";
 
 const alphaErr = "Temp err";
 const lengthErr = "Must contain at least one character.";
@@ -20,13 +16,6 @@ const validateMovie = [
     .withMessage(lengthErr),
 ];
 
-// Here we will first sanitise user-input
-// Then first see if we find a matching director
-// if not, create a new director
-// add director.id to movie's director_id
-// update genres if changed
-// update movie
-// redirect to movie?id=movie.id
 const movieEditPost = [
   ...validateMovie,
   async (req, res) => {
@@ -44,19 +33,17 @@ const movieEditPost = [
     console.log(req.body);
 
     console.log("Updating...");
-    const rows = await updateMovie(
-      movieId,
-      title,
-      year,
-      String(director_name).toLowerCase(),
-      filtered_genres,
-    );
 
-    // 1 Find movie based on ID
-    // 2 Update movies information with new information
-    // 3 get new movie information
+    // Update director
+    const directorRows = await getOrAltarDirectors(director_name);
+
+    // Update information about movie
+    await updateMovie(movieId, title, year, directorRows[0].id);
+
+    // Update movie_genres table as well
+    await updateMovie_genres(movieId, filtered_genres);
+
     // redirect to movieGet
-
     await movieGet(req, res);
   },
 ];

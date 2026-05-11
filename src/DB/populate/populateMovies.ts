@@ -15,6 +15,9 @@ CREATE TABLE IF NOT EXISTS directors (
         country VARCHAR ( 400 )
     );
 
+CREATE UNIQUE INDEX idx_directors_name_lower 
+        ON directors (LOWER(name));
+
 
 CREATE TABLE IF NOT EXISTS movies (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -111,11 +114,12 @@ const seedMovies = async (movieList, client) => {
 };
 
 async function main() {
-  console.log("seeing...");
+  console.log("seeding...");
   const client = new Client({
     connectionString: `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}:${process.env.PGPORT}/${process.env.PGDATABASE}`,
   });
 
+  console.log(client);
   await client.connect();
 
   await client.query(SQL);

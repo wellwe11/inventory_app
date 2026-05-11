@@ -37,7 +37,7 @@
 
         <div class="edit-group" id="edit-group">
           <input name="director_name" class="editMovie minimal_text cleanInput<%= !editMode ? ' hidden' : '' %>" value="<%= director_name %>" <%= editMode ? '' : 'disabled' %> />
-          <a href="/director?id=<%= director_id %>" class="editMovie minimal_text <%= editMode ? 'hidden' : '' %>">
+          <a href="/director?id=<%= director_id %>" class="editMovie minimal_text director_name <%= editMode ? 'hidden' : '' %>">
             <%= director_name %>
           </a>
         </div>
