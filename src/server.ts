@@ -60,3 +60,6 @@ app.listen(PORT, (err) => {
 // style website
 // add data to cloud
 // Create some more rules for css to not select texts etc.
+
+// FIXES
+// Currently, addMovie: Adding an image once works. Removing it and adding again does not display the image.

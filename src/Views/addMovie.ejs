@@ -13,23 +13,26 @@
 <body>
   <%- include("./partials/nav") %>
 
-  <form action="/" method="POST">
+  <form action="/addMovie %>" method="POST">
     <div>
-      <label for="">Movie title</label>
-      <input type="text" />
+      <label for="title">Movie title</label>
+      <input name="title" type="text" required />
 
-      <label for="">Released</label>
-      <input type="number" />
+      <label for="year">Released</label>
+      <input name="year" type="number" required />
 
+      <label for="director_name">Director</label>
+      <input name="director_name" type="text" required />
       <div>
+
         <label for="">Genres</label>
         <%- include("./partials/genres", { genres }) %>
       </div>
 
       <div>
-        <label for="" id="drop-zone">
+        <label for="src" id="drop-zone">
           Image
-          <input type="file" id="file-input" multiple accept="image/*" />
+          <input name="src" type="file" id="file-input" multiple accept="image/*" required />
         </label>
         <ul id="preview"></ul>
         <button id="clear-btn">Clear</button>
@@ -41,6 +44,7 @@
 </body>
 
 <!-- vv Script for addMovieForm! vv -->
+<!-- This script handles the drop-zone for images. It shows the selected image before POSTing it -->
 <script>
   const dropZone = document.getElementById("drop-zone");
   const preview = document.getElementById("preview");
@@ -102,7 +106,7 @@
   }
 
   fileInput.addEventListener("change", (e) => {
-    displayImages(e.target.file);
+    displayImages(e.target.files);
   });
 
   clearBtn.addEventListener("click", () => {
