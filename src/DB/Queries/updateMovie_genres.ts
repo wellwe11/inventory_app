@@ -1,6 +1,7 @@
 import pool from "../pool/pool.js";
 
 export const updateMovie_genres = async (movieId, genres) => {
+  console.log(movieId, genres);
   await pool.query(
     `
         DELETE FROM movie_genres
