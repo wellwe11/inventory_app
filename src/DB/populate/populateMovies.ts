@@ -28,6 +28,9 @@ CREATE TABLE IF NOT EXISTS movies (
         year INTEGER
     );
 
+CREATE UNIQUE INDEX IF NOT EXISTS idx_movies_lower 
+        ON movies (LOWER(title));
+
 CREATE TABLE IF NOT EXISTS genres (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         name VARCHAR( 100 ) UNIQUE
