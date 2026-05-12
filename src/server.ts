@@ -38,13 +38,14 @@ app.listen(PORT, (err) => {
 });
 
 // todo
-// Sanitise user-input for editing a movie
+// fix /addMovie
+// Sanitise /addMovie
+// Add errors-and checkers to inputs as well to display specific errors etc.
 
 // -- GET
 
 // -- POST
-// fix /edit movie
-// fix /addMovie
+// On index. Update so search updates the url, with years & genres. Then FIND those movies using queries from the URL
 
 // -- STYLE
 // Create an abstract <a> class which I apply to all <a>'s that make it look like a nice button
@@ -55,7 +56,6 @@ app.listen(PORT, (err) => {
 
 // -- GENERAL
 // Add reset-button to filter-form
-// Create a 'nav-bar' which has Home always
 // Add security that checks user-inputs (this includes editing info, queries from url etc.)
 // style website
 // add data to cloud

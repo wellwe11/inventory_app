@@ -6,6 +6,7 @@ import directorsData from "../../../public/directors_data.json" with { type: "js
 import genresData from "../../../public/genres_data.json" with { type: "json" };
 
 // Seed tables-query
+
 const SQL = `
 CREATE TABLE IF NOT EXISTS directors (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -15,7 +16,7 @@ CREATE TABLE IF NOT EXISTS directors (
         country VARCHAR ( 400 )
     );
 
-CREATE UNIQUE INDEX idx_directors_name_lower 
+CREATE UNIQUE INDEX  IF NOT EXISTS idx_directors_name_lower 
         ON directors (LOWER(name));
 
 
