@@ -1,114 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/genreCheckbox.css" />
 
-    <title>Document</title>
-  </head>
-  <body>
-    <%- include("./partials/nav") %>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/genreCheckbox.css" />
 
-    <form action="/" method="POST">
+  <title>Document</title>
+</head>
+
+<body>
+  <%- include("./partials/nav") %>
+
+  <form action="/" method="POST">
+    <div>
+      <label for="">Movie title</label>
+      <input type="text" />
+
+      <label for="">Released</label>
+      <input type="number" />
+
       <div>
-        <label for="">Movie title</label>
-        <input type="text" />
-
-        <label for="">Released</label>
-        <input type="number" />
-
-        <div>
-          <label for="">Genres</label>
-          <%- include("./partials/genres") %>
-        </div>
-
-        <div>
-          <label for="" id="drop-zone">
-            Image
-            <input type="file" id="file-input" multiple accept="image/*" />
-          </label>
-          <ul id="preview"></ul>
-          <button id="clear-btn">Clear</button>
-        </div>
+        <label for="">Genres</label>
+        <%- include("./partials/genres", { genres }) %>
       </div>
 
-      <button>Submit</button>
-    </form>
-  </body>
+      <div>
+        <label for="" id="drop-zone">
+          Image
+          <input type="file" id="file-input" multiple accept="image/*" />
+        </label>
+        <ul id="preview"></ul>
+        <button id="clear-btn">Clear</button>
+      </div>
+    </div>
 
-  <!-- vv Script for addMovieForm! vv -->
-  <script>
-    const dropZone = document.getElementById("drop-zone");
-    const preview = document.getElementById("preview");
-    const fileInput = document.getElementById("file-input");
-    const clearBtn = document.getElementById("clear-btn");
+    <button>Submit</button>
+  </form>
+</body>
 
-    dropZone.addEventListener("drop", (e) => {
-      if ([...e.dataTransfer.item].some((item) => item.kind === "file")) {
-        e.preventDefault();
-      }
-    });
+<!-- vv Script for addMovieForm! vv -->
+<script>
+  const dropZone = document.getElementById("drop-zone");
+  const preview = document.getElementById("preview");
+  const fileInput = document.getElementById("file-input");
+  const clearBtn = document.getElementById("clear-btn");
 
-    dropZone.addEventListener("dragover", (e) => {
-      const fileItems = [...e.dataTransfer.items].filter(
-        (item) => item.kind === "file",
-      );
-      if (fileItems.length > 0) {
-        e.preventDefault();
-        if (fileItems.some((item) => item.type.startsWith("image/"))) {
-          e.dataTransfer.dropEffect = "copy";
-        } else {
-          e.dataTransfer.dropEffect = "none";
-        }
-      }
-    });
+  dropZone.addEventListener("drop", (e) => {
+    if ([...e.dataTransfer.item].some((item) => item.kind === "file")) {
+      e.preventDefault();
+    }
+  });
 
-    window.addEventListener("dragover", (e) => {
-      const fileItems = [...e.dataTransfer.items].filter(
-        (item) => item.kind === "file",
-      );
-      if (fileItems.length > 0) {
-        e.preventDefault();
-        if (!dropZone.contains(e.target)) {
-          e.dataTransfer.dropEffect = "none";
-        }
-      }
-    });
-
-    function displayImages(files) {
-      for (const file of files) {
-        if (file.type.startsWith("image/")) {
-          const li = document.createElement("li");
-          const img = document.createElement("img");
-          img.src = URL.createObjectURL(file);
-          img.alt = file.name;
-          li.appendChild(img);
-          li.appendChild(document.createTextNode(file.name));
-          preview.appendChild(li);
-        }
+  dropZone.addEventListener("dragover", (e) => {
+    const fileItems = [...e.dataTransfer.items].filter(
+      (item) => item.kind === "file",
+    );
+    if (fileItems.length > 0) {
+      e.preventDefault();
+      if (fileItems.some((item) => item.type.startsWith("image/"))) {
+        e.dataTransfer.dropEffect = "copy";
+      } else {
+        e.dataTransfer.dropEffect = "none";
       }
     }
+  });
 
-    function dropHandler(ev) {
-      ev.preventDefault();
-      const files = [...ev.dataTransfer.items]
-        .map((item) => item.getAsFile())
-        .filter((file) => file);
-      displayImages(files);
-    }
-
-    fileInput.addEventListener("change", (e) => {
-      displayImages(e.target.file);
-    });
-
-    clearBtn.addEventListener("click", () => {
-      for (const img of preview.querySelectorAll("img")) {
-        URL.revokeObjectURL(img.src);
+  window.addEventListener("dragover", (e) => {
+    const fileItems = [...e.dataTransfer.items].filter(
+      (item) => item.kind === "file",
+    );
+    if (fileItems.length > 0) {
+      e.preventDefault();
+      if (!dropZone.contains(e.target)) {
+        e.dataTransfer.dropEffect = "none";
       }
-      preview.textContent = "";
-    });
-  </script>
-  <!-- ^^ Script for addMovieForm! ^^ -->
+    }
+  });
+
+  function displayImages(files) {
+    for (const file of files) {
+      if (file.type.startsWith("image/")) {
+        const li = document.createElement("li");
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(file);
+        img.alt = file.name;
+        li.appendChild(img);
+        li.appendChild(document.createTextNode(file.name));
+        preview.appendChild(li);
+      }
+    }
+  }
+
+  function dropHandler(ev) {
+    ev.preventDefault();
+    const files = [...ev.dataTransfer.items]
+      .map((item) => item.getAsFile())
+      .filter((file) => file);
+    displayImages(files);
+  }
+
+  fileInput.addEventListener("change", (e) => {
+    displayImages(e.target.file);
+  });
+
+  clearBtn.addEventListener("click", () => {
+    for (const img of preview.querySelectorAll("img")) {
+      URL.revokeObjectURL(img.src);
+    }
+    preview.textContent = "";
+  });
+</script>
+<!-- ^^ Script for addMovieForm! ^^ -->
+
 </html>
