@@ -1,15 +1,15 @@
 import pool from "../pool/pool.js";
 
-export const addMovie = async (title, year, director_id, src) => {
+export const addMovie = async (title) => {
   const { rows } = await pool.query(
     `
-        INSERT INTO     movies (title, year, director_id, src)
-        VALUES          ($1, $2, $3, $4)
+        INSERT INTO     movies (title)
+        VALUES          ($1)
         ON CONFLICT     ((LOWER(title)))
         DO NOTHING
         RETURNING       *;
         `,
-    [title, year, director_id, src],
+    [title],
   );
 
   return rows;

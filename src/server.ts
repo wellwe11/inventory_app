@@ -63,3 +63,5 @@ app.listen(PORT, (err) => {
 
 // FIXES
 // Currently, addMovie: Adding an image once works. Removing it and adding again does not display the image.
+// fix the '+' button on /movie
+// Allow user to edit movie-image

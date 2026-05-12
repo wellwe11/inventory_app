@@ -68,6 +68,7 @@ const movieEditPost = [
     }
 
     const { title, year, director_name, filtered_genres } = req.body;
+    console.log(filtered_genres);
 
     console.log("Updating movie...");
 
